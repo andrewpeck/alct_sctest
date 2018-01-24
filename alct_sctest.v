@@ -8,26 +8,35 @@
 //------------------------------------------------------------------------------------------------------------------
 //  `define VIRTEXE         1           // Must compile under ISE 8  or earlier
     `define SPARTAN6        1           // Must compile under ISE 13 or later
+//  `define LX150T          1           // Must compile under ISE 13 or later
+//  `define LX100           1           // Must compile under ISE 13 or later
+    `define LX150           1           // Must compile under ISE 13 or later
 
 // Firmware date
-    `define MONTHDAY        16'h0509    // Version date
-    `define YEAR            16'h2012    // Version date
+    `define MONTHDAY        16'h0123    // Version date
+    `define YEAR            16'h2017    // Version date
 
 // Firmware device code read out
     `ifdef  VIRTEXE
-    `define FPGA            16'h600E    // Virtex 600 E
+      `define FPGA            16'h600E    // Virtex 600 E
     `elsif  SPARTAN6
-    `define FPGA            16'h1506    // Spartan 6 150
+      `ifdef  LX150
+      `define FPGA            16'h1506    // Spartan 6 150
+      `elsif  LX100
+      `define FPGA            16'h1006    // Spartan 6 150
+      `elsif  LX150T
+      `define FPGA            16'h1516    // Spartan 6 150
+      `endif
     `else
-    `define FPGA            16'hDEAD    // Undefined FPGA
+      `define FPGA            16'hDEAD    // Undefined FPGA
     `endif
 
 //------------------------------------------------------------------------------------------------------------------
 // Select 1 board type:
 //------------------------------------------------------------------------------------------------------------------
 //  `define ALCT288     1           // XCV600E  FG680 7C 1 PROM  XC18V04
-    `define ALCT384     1           // XCV600E  FG680 7C 1 PROM  XC18V04    or XC6SLX150 FGG900 2 PROM XCF32P+XCF08P
-//  `define ALCT672     1           // XCV1000E FG680 7C 2 PROMs XC18V04
+//  `define ALCT384     1           // XCV600E  FG680 7C 1 PROM  XC18V04    or XC6SLX150 FGG900 2 PROM XCF32P+XCF08P
+    `define ALCT672     1           // XCV1000E FG680 7C 2 PROMs XC18V04
 //
 //------------------------------------------------------------------------------------------------------------------
 //  04/17/2012  Initial, adapted from alct_loop_demo.v with jtag state machine from rat2005e
@@ -44,6 +53,7 @@
 //  05/05/2012  Replace DLL with PLL
 //  05/07/2012  Add SEU and unconnected adb register
 //  05/08/2012  Add latch for unconnected adb register
+//  01/10/2018  Additions for testing of lx100 and lx150t mezzanines
 //------------------------------------------------------------------------------------------------------------------
 //  J5 ALCT Cable-1 Connector [Transmiter]
 //------------------------------------------------------------------------------------------------------------------
@@ -231,6 +241,23 @@
     ,init_b
     ,m
     ,rdwr_b
+
+`ifdef LX150T
+   , tx_p
+   , tx_n
+
+   , refclk_p
+   , refclk_n
+ `elsif LX100
+   , elink_p
+   , elink_n
+
+   , gbt_clk40_p
+   , gbt_clk40_n
+
+   , gbt_txrdy
+   , gbt_tx_datavalid
+  `endif
 `endif
     );
 
@@ -364,6 +391,22 @@
     input           init_b;         // INIT_B
     input   [1:0]   m;              // M0, M1
     input           rdwr_b;         // RDWR_B
+
+   `ifdef LX150T
+   output [1:0] tx_p;
+   output [1:0] tx_n;
+   input refclk_p;
+   input refclk_n;
+  `elsif LX100
+   output [13:0] elink_p;
+   output [13:0] elink_n;
+
+   input [1:0] gbt_clk40_p;
+   input [1:0] gbt_clk40_n;
+
+   input gbt_txrdy;
+   output gbt_tx_datavalid;
+   `endif
 `endif
 
 //------------------------------------------------------------------------------------------------------------------
@@ -1107,19 +1150,19 @@
 //------------------------------------------------------------------------------------------------------------------
 
     reg [15:0] adb_mux;
-    reg [5:0]  adb_channel; 
-    wire [8:0] adb_adr_masked = adb_adr_reg & ~9'h040; 
-    always @(posedge clock) begin 
-      if (adb_adr_reg >= MXADBS) 
+    reg [5:0]  adb_channel;
+    wire [8:0] adb_adr_masked = adb_adr_reg & ~9'h040;
+    always @(posedge clock) begin
+      if (adb_adr_reg >= MXADBS)
         adb_channel <= {6{1'b1}};
-      else 
+      else
         adb_channel <= adb_adr_masked[5:0];  // Software ORs ch with 0x40, so blank it here
-    end 
+    end
 
     always @(posedge clock) begin
-      if (adb_adr_reg >= MXADBS) 
-         adb_mux <= 16'hDEAD; 
-      else 
+      if (adb_adr_reg >= MXADBS)
+         adb_mux <= 16'hDEAD;
+      else
          adb_mux <= adb[adb_channel];
     end
 
@@ -1776,6 +1819,49 @@
     .DOB            (ram_dob_s6[31:0]),     // 32-bit output: B port data output
     .DOPB           ()                      //  4-bit output: B port parity output
     );
+`endif
+
+//------------------------------------------------------------------------------------------------------------------
+//  Outputs for Optical Mezzanines
+//------------------------------------------------------------------------------------------------------------------
+
+`ifdef SPARTAN6
+  `ifdef LX150T
+
+    optical_lx150t  optical_prbs (
+
+      .clock(clock) , // 40 mhz logic clock
+
+      .tx_p(tx_p),
+      .tx_n(tx_n),
+
+      .refclk_p(refclk_p),
+      .refclk_n(refclk_n),
+
+      .reset(!clock_lock)
+
+    );
+
+  `elsif LX100
+
+    assign gbt_tx_datavalid = 1'b1;
+
+    optical_gbt  optical_gbt (
+
+      .elink_p(elink_p),
+      .elink_n(elink_n),
+
+      .gbt_clk40_p(gbt_clk40_p),
+      .gbt_clk40_n(gbt_clk40_n),
+
+      .gbt_txrdy (gbt_txrdy),
+
+      .reset(!clock_lock)
+
+    );
+
+
+  `endif
 `endif
 
 //------------------------------------------------------------------------------------------------------------------
