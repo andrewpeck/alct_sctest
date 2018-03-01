@@ -539,8 +539,6 @@
     `else
     .CLKOUT1_PHASE          (99999),
     `endif
-
-    .CLKOUT1_PHASE          ( 45.0),
     .CLKOUT2_PHASE          (270.0),
     .CLKOUT3_PHASE          (  0.0),
     .CLKOUT4_PHASE          ( 90.0),
