@@ -790,47 +790,47 @@
       dly_clk_en <= 0;
       din_dly    <= 0;
 
-    case (tap)
+      case (tap)
 
-    test_logic_reset:
-        if (tms == L) tap = run_test_idle;
+        test_logic_reset:
+          if (tms == L) tap = run_test_idle;
 
-    run_test_idle:
-        if (tms == H) tap = select_dr_scan;
+        run_test_idle:
+          if (tms == H) tap = select_dr_scan;
 
-    select_dr_scan:
-        if (tms == H) tap = select_ir_scan;
-        else          tap = capture_dr;
+        select_dr_scan:
+          if (tms == H) tap = select_ir_scan;
+          else          tap = capture_dr;
 
-    capture_dr:
-        begin
-        if (tms == H) tap = exit1_dr;
-        else          tap = shift_dr;
+        capture_dr:
+          begin
+            if (tms == H) tap = exit1_dr;
+            else          tap = shift_dr;
 
-        case (ir)
-        Ox01read:       begin tdo_adr = 1;  fpga_sr     <= fpga_reg;        end // Read  FPGA type
-        Ox02read:       begin tdo_adr = 2;  monthday_sr <= monthday_reg;    end // Read  monthday
-        Ox03read:       begin tdo_adr = 3;  year_sr     <= year_reg;        end // Read  year
-        Ox04read:       begin tdo_adr = 4;  todd_sr     <= todd_reg;        end // Read  Todd
-        Ox05read:       begin tdo_adr = 5;  teven_sr    <= teven_reg;       end // Read  Teven
+            case (ir)
+              Ox01read:       begin tdo_adr = 1;  fpga_sr     <= fpga_reg;        end // Read  FPGA type
+              Ox02read:       begin tdo_adr = 2;  monthday_sr <= monthday_reg;    end // Read  monthday
+              Ox03read:       begin tdo_adr = 3;  year_sr     <= year_reg;        end // Read  year
+              Ox04read:       begin tdo_adr = 4;  todd_sr     <= todd_reg;        end // Read  Todd
+              Ox05read:       begin tdo_adr = 5;  teven_sr    <= teven_reg;       end // Read  Teven
 
-        Ox06read:       begin tdo_adr = 6;  dsn_rd_sr   <= dsn_rd_reg;      end // Read  dsn
-        Ox07write:      begin tdo_adr = 7;  dsn_wr_sr   <= dsn_wr_reg;      end // Write dsn
+              Ox06read:       begin tdo_adr = 6;  dsn_rd_sr   <= dsn_rd_reg;      end // Read  dsn
+              Ox07write:      begin tdo_adr = 7;  dsn_wr_sr   <= dsn_wr_reg;      end // Write dsn
 
-        Ox08read:       begin tdo_adr = 8;  adc_rd_sr   <= adc_rd_reg;      end // Read  ADC
-        Ox09write:      begin tdo_adr = 9;  adc_wr_sr   <= adc_wr_reg;      end // Write ADC
+              Ox08read:       begin tdo_adr = 8;  adc_rd_sr   <= adc_rd_reg;      end // Read  ADC
+              Ox09write:      begin tdo_adr = 9;  adc_wr_sr   <= adc_wr_reg;      end // Write ADC
 
-        Ox0Aread:       begin tdo_adr =10;  adb_hit_sr  <= adb_hit_reg;     end // Read  adb_hit
+              Ox0Aread:       begin tdo_adr =10;  adb_hit_sr  <= adb_hit_reg;     end // Read  adb_hit
 
-        Ox0Bread:       begin tdo_adr =11;  crc_err_sr  <= crc_err_reg;     end // Read  crc_error
+              Ox0Bread:       begin tdo_adr =11;  crc_err_sr  <= crc_err_reg;     end // Read  crc_error
 
-        Ox15read:       begin tdo_adr =12;  adb_adr_sr  <= adb_adr_reg;     end // Read  adb_adr
-        Ox16write:      begin tdo_adr =12;  end                                 // Write adb_adr
+              Ox15read:       begin tdo_adr =12;  adb_adr_sr  <= adb_adr_reg;     end // Read  adb_adr
+              Ox16write:      begin tdo_adr =12;  end                                 // Write adb_adr
 
-        Ox17read:       begin tdo_adr =13;  scsi_data_sr<= scsi_data_reg;   end // Read  scsi tx data
-        Ox18write:      begin tdo_adr =13;  end                                 // Write scsi tx data
+              Ox17read:       begin tdo_adr =13;  scsi_data_sr<= scsi_data_reg;   end // Read  scsi tx data
+              Ox18write:      begin tdo_adr =13;  end                                 // Write scsi tx data
 
-        Ox19read:       begin tdo_adr =14;  lct_rx_sr   <= lct_rx_map;      end // Read  adb  rx data
+              Ox19read:       begin tdo_adr =14;  lct_rx_sr   <= lct_rx_map;      end // Read  adb  rx data
 
               Ox1Aread:       begin tdo_adr =15;  end
               Ox1Bwrite:      begin tdo_adr =15;  end
@@ -838,36 +838,36 @@
               Ox1Cread:       begin tdo_adr =16;  dly_sel_sr <= dly_sel_reg;      end
               Ox1Dwrite:      begin tdo_adr =16;  end
 
-        default:        begin tdo_adr = 0;  end
-        endcase
-        end
+              default:        begin tdo_adr = 0;  end
+            endcase
+          end
 
-    shift_dr:
-        begin
-        if (tms == H) tap = exit1_dr;
+        shift_dr:
+          begin
+            if (tms == H) tap = exit1_dr;
 
-        case (ir)
-        Ox01read:   fpga_sr      <= {tdi,fpga_sr[15:1]};
-        Ox02read:   monthday_sr  <= {tdi,monthday_sr[15:1]};
-        Ox03read:   year_sr      <= {tdi,year_sr[15:1]};
-        Ox04read:   todd_sr      <= {tdi,todd_sr[15:1]};
-        Ox05read:   teven_sr     <= {tdi,teven_sr[15:1]};
+            case (ir)
+              Ox01read:                fpga_sr      <= {tdi,fpga_sr[15:1]};
+              Ox02read:                monthday_sr  <= {tdi,monthday_sr[15:1]};
+              Ox03read:                year_sr      <= {tdi,year_sr[15:1]};
+              Ox04read:                todd_sr      <= {tdi,todd_sr[15:1]};
+              Ox05read:                teven_sr     <= {tdi,teven_sr[15:1]};
 
-        Ox06read:   dsn_rd_sr    <= {tdi,dsn_rd_sr[9:1]};
-        Ox07write:  dsn_wr_sr    <= {tdi,dsn_wr_sr[9:1]};
+              Ox06read:                dsn_rd_sr    <= {tdi,dsn_rd_sr[9:1]};
+              Ox07write:               dsn_wr_sr    <= {tdi,dsn_wr_sr[9:1]};
 
-        Ox08read:   adc_rd_sr    <= {tdi,adc_rd_sr[4:1]};
-        Ox09write:  adc_wr_sr    <= {tdi,adc_wr_sr[4:1]};
+              Ox08read:                adc_rd_sr    <= {tdi,adc_rd_sr[4:1]};
+              Ox09write:               adc_wr_sr    <= {tdi,adc_wr_sr[4:1]};
 
-        Ox0Aread:   adb_hit_sr   <= {tdi,adb_hit_sr[MXADBS-1:1]};
+              Ox0Aread:                adb_hit_sr   <= {tdi,adb_hit_sr[MXADBS-1:1]};
 
-        Ox0Bread:   crc_err_sr   <= {tdi};
+              Ox0Bread:                crc_err_sr   <= {tdi};
 
               Ox15read, Ox16write:     adb_adr_sr   <= {tdi,adb_adr_sr[8:1]};
 
               Ox17read, Ox18write:     scsi_data_sr <= {tdi,scsi_data_sr[15:1]};
 
-        Ox19read:   lct_rx_sr    <= {tdi,lct_rx_sr[15:1]};
+              Ox19read:                lct_rx_sr    <= {tdi,lct_rx_sr[15:1]};
 
               Ox1Aread, Ox1Bwrite:
                 begin
@@ -876,81 +876,81 @@
 
               Ox1Cread, Ox1Dwrite:     dly_sel_sr <= {tdi,dly_sel_sr[2:1]};
 
-        endcase
-        end
+            endcase
+          end
 
-    exit1_dr:
-        if (tms == H) tap = update_dr;
-        else          tap = pause_dr;
+        exit1_dr:
+          if (tms == H) tap = update_dr;
+          else          tap = pause_dr;
 
-    pause_dr:
-        if (tms == H) tap = exit2_dr;
+        pause_dr:
+          if (tms == H) tap = exit2_dr;
 
-    exit2_dr:
-        if (tms == H) tap = update_dr;
-        else          tap = shift_dr;
+        exit2_dr:
+          if (tms == H) tap = update_dr;
+          else          tap = shift_dr;
 
-    update_dr:
-        begin
-        if (tms == H) tap = select_dr_scan;
-        else          tap = run_test_idle;
+        update_dr:
+          begin
+            if (tms == H) tap = select_dr_scan;
+            else          tap = run_test_idle;
 
-        case (ir)
-        Ox07write:  dsn_wr_reg    <= dsn_wr_sr;
-        Ox09write:  adc_wr_reg    <= adc_wr_sr;
-        Ox16write:  adb_adr_reg   <= adb_adr_sr;
-        Ox18write:  scsi_data_reg <= scsi_data_sr;
+            case (ir)
+              Ox07write:  dsn_wr_reg    <= dsn_wr_sr;
+              Ox09write:  adc_wr_reg    <= adc_wr_sr;
+              Ox16write:  adb_adr_reg   <= adb_adr_sr;
+              Ox18write:  scsi_data_reg <= scsi_data_sr;
               Ox1Dwrite:  dly_sel_reg   <= dly_sel_sr;
-        endcase
-        end
+            endcase
+          end
 
-    select_ir_scan:
-        if (tms == H) tap = test_logic_reset;
-        else          tap = capture_ir;
+        select_ir_scan:
+          if (tms == H) tap = test_logic_reset;
+          else          tap = capture_ir;
 
-    capture_ir:
-        begin
-        if (tms == H) tap = exit1_ir;
-        else          tap = shift_ir;
+        capture_ir:
+          begin
+            if (tms == H) tap = exit1_ir;
+            else          tap = shift_ir;
 
-        sr     <= ir;
-        tdo_adr = 0;
-        end
+            sr     <= ir;
+            tdo_adr = 0;
+          end
 
-    shift_ir:
-        begin
-        if (tms == H) tap = exit1_ir;
+        shift_ir:
+          begin
+            if (tms == H) tap = exit1_ir;
 
-        sr <= {tdi, sr[4:1]};
-        end
+            sr <= {tdi, sr[4:1]};
+          end
 
-    exit1_ir:
-        if (tms == H) tap = update_ir;
-        else          tap = pause_ir;
+        exit1_ir:
+          if (tms == H) tap = update_ir;
+          else          tap = pause_ir;
 
-    pause_ir:
-        if (tms == H) tap = exit2_ir;
+        pause_ir:
+          if (tms == H) tap = exit2_ir;
 
-    exit2_ir:
-        if (tms == H) tap = update_ir;
-        else          tap = shift_ir;
+        exit2_ir:
+          if (tms == H) tap = update_ir;
+          else          tap = shift_ir;
 
-    update_ir:
-        begin
-        if (tms == H) tap = select_dr_scan;
-        else          tap = run_test_idle;
+        update_ir:
+          begin
+            if (tms == H) tap = select_dr_scan;
+            else          tap = run_test_idle;
 
-        ir = sr;
-        end
+            ir = sr;
+          end
 
-    default:          tap = test_logic_reset;
-    endcase
+        default:          tap = test_logic_reset;
+      endcase
     end
     end
 
 // TDO multiplexer
     always @(negedge tck) begin
-    case (tdo_adr)
+      case (tdo_adr)
       5'd0:       tdo <= sr[0];           // Passthrough
       5'd1:       tdo <= fpga_sr[0];      // FPGA type
       5'd2:       tdo <= monthday_sr[0];  // Firmware month and day
@@ -973,7 +973,7 @@
       5'd15:      tdo <= dout_dly_mux[0]; // Multiplexed Dout from delay chips
       5'd16:      tdo <= dly_sel_sr[0];   // Read delay select
       default:    tdo <= sr[0];           // Passthrough
-    endcase
+      endcase
     end
 
 //------------------------------------------------------------------------------------------------------------------
@@ -1196,7 +1196,7 @@
     endgenerate
 
 //------------------------------------------------------------------------------------------------------------------
-// Select 1 of 24 ADB channels to output via JTAG
+// Select 1 of 42 ADB channels to output via JTAG
 //------------------------------------------------------------------------------------------------------------------
 
     reg [15:0] adb_mux;
@@ -1221,8 +1221,8 @@
 
     always @(posedge clock) begin
     if (latch_adb) begin
-    lct_rx[15:0]      <= adb_mux[15:0];
-    adb_hit_reg <= adb_hit_list;
+      lct_rx[15:0] <= adb_mux[15:0];
+      adb_hit_reg  <= adb_hit_list;
     end
     end
 
