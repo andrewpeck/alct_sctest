@@ -486,10 +486,22 @@
     assign nmx_oe = 0;
 
 // Receive multiplexer clocks 80MHz ddr obuf fast 24ma
+`ifdef ALCT288
     clock_mirror uclk40_0 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[0]));
     clock_mirror uclk40_1 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[1]));
     clock_mirror uclk80_0 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[0]  ));
     clock_mirror uclk80_1 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[1]  ));
+`elsif ALCT384
+    clock_mirror uclk40_0 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[0]));
+    clock_mirror uclk40_1 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[1]));
+    clock_mirror uclk80_0 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[0]  ));
+    clock_mirror uclk80_1 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[1]  ));
+`elsif ALCT672
+    clock_mirror uclk40_0 (.clock(clock_1x_90), .clock_180(~clock_1x_90), .mirror(clk40sh[0]));
+    clock_mirror uclk40_1 (.clock(clock_1x_90), .clock_180(~clock_1x_90), .mirror(clk40sh[1]));
+    clock_mirror uclk80_0 (.clock(clock_2x),    .clock_180(~clock_2x),    .mirror(clk80[0]  ));
+    clock_mirror uclk80_1 (.clock(clock_2x),    .clock_180(~clock_2x),    .mirror(clk80[1]  ));
+`endif
 
 // PLL generates clocks 1x=40MHz, 2x=80MHz and phase offsets for LCT multiplexers
     PLL_BASE #
@@ -520,7 +532,17 @@
     .CLKOUT5_DUTY_CYCLE     (0.5),
 
     .CLKOUT0_PHASE          (  0.0),                // Output phase relationship for CLKOUT# clock output (-360.0-360.0)
+    `ifdef ALCT288
     .CLKOUT1_PHASE          ( 90.0),
+    `elsif ALCT384
+    .CLKOUT1_PHASE          ( 90.0),
+    `elsif ALCT672
+    .CLKOUT1_PHASE          ( 45.0),
+    `else
+    .CLKOUT1_PHASE          (99999),
+    `endif
+
+    .CLKOUT1_PHASE          ( 45.0),
     .CLKOUT2_PHASE          (270.0),
     .CLKOUT3_PHASE          (  0.0),
     .CLKOUT4_PHASE          ( 90.0),
