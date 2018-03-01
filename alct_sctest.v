@@ -353,7 +353,7 @@
 
 // Delay ASICs
     output          clk_dly;        // Clock to   delay asics
-    output          din_dly;        // Serial data  to   delay asics
+    output  reg     din_dly;        // Serial data  to   delay asics
     output          nrs_dly;        // Reset
     output          seltst_dly;     // Select test mode data from delay asics
     output  [N-1:0] ncs_dly;        // *chip select 672[6:0] 384[3:0] 288[2:0]
@@ -740,11 +740,15 @@
     parameter Ox17read            =   5'h17;      // Read  scsi_data
     parameter Ox18write           =   5'h18;      // Write scsi data
     parameter Ox19read            =   5'h19;      // Read  adb looped-back data
+    parameter Ox1Aread            =   5'h1A;      // Read  delay asics
+    parameter Ox1Bwrite           =   5'h1B;      // Write delay asics
+    parameter Ox1Cread            =   5'h1C;      // Read  delay asics select
+    parameter Ox1Dwrite           =   5'h1D;      // Write delay asics select
 
 // JTAG registers
     reg [4:0]   ir                = 0;            // Instruction register
     reg [4:0]   sr                = 0;            // IR shift register
-    reg [3:0]   tdo_adr           = 0;            // Pointer to TDO source
+    reg [4:0]   tdo_adr           = 0;            // Pointer to TDO source
 
 // Data registers
     wire [15:0] fpga_reg          = `FPGA;        // 0x01 Mezzanine FPGA type                     16 bits
@@ -777,10 +781,16 @@
     reg  [15:0] lct_rx_sr         = 0;            // 0x19 Read  test pattern from ADB
     reg  [15:0] lct_rx_map        = 0;
 
+    reg  [2:0] dly_sel_sr         = 0;            // 0x1C Read  delay chip select register (0-5)
+    reg  [2:0] dly_sel_reg        = 0;            // 0x1D Write delay chip select register (0-5)
+
 // TAP State Machine
     always @(posedge tck or negedge ntrst) begin
     if (!ntrst)       tap = test_logic_reset;
     else begin
+
+      dly_clk_en <= 0;
+      din_dly    <= 0;
 
     case (tap)
 
@@ -813,6 +823,7 @@
         Ox09write:      begin tdo_adr = 9;  adc_wr_sr   <= adc_wr_reg;      end // Write ADC
 
         Ox0Aread:       begin tdo_adr =10;  adb_hit_sr  <= adb_hit_reg;     end // Read  adb_hit
+
         Ox0Bread:       begin tdo_adr =11;  crc_err_sr  <= crc_err_reg;     end // Read  crc_error
 
         Ox15read:       begin tdo_adr =12;  adb_adr_sr  <= adb_adr_reg;     end // Read  adb_adr
@@ -820,7 +831,15 @@
 
         Ox17read:       begin tdo_adr =13;  scsi_data_sr<= scsi_data_reg;   end // Read  scsi tx data
         Ox18write:      begin tdo_adr =13;  end                                 // Write scsi tx data
+
         Ox19read:       begin tdo_adr =14;  lct_rx_sr   <= lct_rx_map;      end // Read  adb  rx data
+
+              Ox1Aread:       begin tdo_adr =15;  end
+              Ox1Bwrite:      begin tdo_adr =15;  end
+
+              Ox1Cread:       begin tdo_adr =16;  dly_sel_sr <= dly_sel_reg;      end
+              Ox1Dwrite:      begin tdo_adr =16;  end
+
         default:        begin tdo_adr = 0;  end
         endcase
         end
@@ -843,14 +862,22 @@
         Ox09write:  adc_wr_sr    <= {tdi,adc_wr_sr[4:1]};
 
         Ox0Aread:   adb_hit_sr   <= {tdi,adb_hit_sr[MXADBS-1:1]};
+
         Ox0Bread:   crc_err_sr   <= {tdi};
 
-        Ox15read:   adb_adr_sr   <= {tdi,adb_adr_sr[8:1]};
-        Ox16write:  adb_adr_sr   <= {tdi,adb_adr_sr[8:1]};
+              Ox15read, Ox16write:     adb_adr_sr   <= {tdi,adb_adr_sr[8:1]};
 
-        Ox17read:   scsi_data_sr <= {tdi,scsi_data_sr[15:1]};
-        Ox18write:  scsi_data_sr <= {tdi,scsi_data_sr[15:1]};
+              Ox17read, Ox18write:     scsi_data_sr <= {tdi,scsi_data_sr[15:1]};
+
         Ox19read:   lct_rx_sr    <= {tdi,lct_rx_sr[15:1]};
+
+              Ox1Aread, Ox1Bwrite:
+                begin
+                                       din_dly    <= tdi; dly_clk_en <= 1'b1;
+                end
+
+              Ox1Cread, Ox1Dwrite:     dly_sel_sr <= {tdi,dly_sel_sr[2:1]};
+
         endcase
         end
 
@@ -875,6 +902,7 @@
         Ox09write:  adc_wr_reg    <= adc_wr_sr;
         Ox16write:  adb_adr_reg   <= adb_adr_sr;
         Ox18write:  scsi_data_reg <= scsi_data_sr;
+              Ox1Dwrite:  dly_sel_reg   <= dly_sel_sr;
         endcase
         end
 
@@ -925,26 +953,28 @@
 // TDO multiplexer
     always @(negedge tck) begin
     case (tdo_adr)
-    4'd0:       tdo <= sr[0];           // Passthrough
-    4'd1:       tdo <= fpga_sr[0];      // FPGA type
-    4'd2:       tdo <= monthday_sr[0];  // Firmware month and day
-    4'd3:       tdo <= year_sr[0];      // Firmware year
-    4'd4:       tdo <= todd_sr[0];      // Odd  test pattern
-    4'd5:       tdo <= teven_sr[0];     // Even test pattern
+      5'd0:       tdo <= sr[0];           // Passthrough
+      5'd1:       tdo <= fpga_sr[0];      // FPGA type
+      5'd2:       tdo <= monthday_sr[0];  // Firmware month and day
+      5'd3:       tdo <= year_sr[0];      // Firmware year
+      5'd4:       tdo <= todd_sr[0];      // Odd  test pattern
+      5'd5:       tdo <= teven_sr[0];     // Even test pattern
 
 
-    4'd6:       tdo <= dsn_rd_sr[0];    // Read  dsn
-    4'd7:       tdo <= dsn_wr_sr[0];    // Write dsn
-    4'd8:       tdo <= adc_rd_sr[0];    // Read  ADC
-    4'd9:       tdo <= adc_wr_sr[0];    // Write ADC
+      5'd6:       tdo <= dsn_rd_sr[0];    // Read  dsn
+      5'd7:       tdo <= dsn_wr_sr[0];    // Write dsn
+      5'd8:       tdo <= adc_rd_sr[0];    // Read  ADC
+      5'd9:       tdo <= adc_wr_sr[0];    // Write ADC
 
-    4'd10:      tdo <= adb_hit_sr[0];   // Read  ADB hit list
-    4'd11:      tdo <= crc_err_sr[0];   // Read  CRC error bit
+      5'd10:      tdo <= adb_hit_sr[0];   // Read  ADB hit list
+      5'd11:      tdo <= crc_err_sr[0];   // Read  CRC error bit
 
-    4'd12:      tdo <= adb_adr_sr[0];   // ADB  channel
-    4'd13:      tdo <= scsi_data_sr[0]; // SCSI data
-    4'd14:      tdo <= lct_rx_sr[0];    // ADB  cable data
-    default     tdo <= sr[0];           // Passthrough
+      5'd12:      tdo <= adb_adr_sr[0];   // ADB  channel
+      5'd13:      tdo <= scsi_data_sr[0]; // SCSI data
+      5'd14:      tdo <= lct_rx_sr[0];    // ADB  cable data
+      5'd15:      tdo <= dout_dly_mux[0]; // Multiplexed Dout from delay chips
+      5'd16:      tdo <= dly_sel_sr[0];   // Read delay select
+      default:    tdo <= sr[0];           // Passthrough
     endcase
     end
 
@@ -1565,6 +1595,11 @@
 //------------------------------------------------------------------------------------------------------------------
 // Delay ASICs
 //------------------------------------------------------------------------------------------------------------------
+
+    reg dly_clk_en;
+    assign seltst_dly = 1'b0;
+    assign nrs_dly = 1'b1;
+
     reg [7:0] power_up_ctr=0;
 
     wire power_up = power_up_ctr[7];
@@ -1574,11 +1609,18 @@
     end
 
     assign test_pulse   = 0;            // Fire adb test pulser
-    assign clk_dly      = 0;            // Clock to   delay asics
-    assign din_dly      = 0;            // Serial data  to   delay asics
-    assign nrs_dly      = power_up;     // /reset
-    assign seltst_dly   = 0;            // Select test mode data from delay asics
-    assign ncs_dly      = 4'b1111;      // /chip select
+
+    wire [0:0] dout_dly_mux = dout_dly[dly_sel_reg[2:0]];
+
+    assign ncs_dly [0] = !(dly_clk_en && dly_sel_reg==3'd0);
+    assign ncs_dly [1] = !(dly_clk_en && dly_sel_reg==3'd1);
+    assign ncs_dly [2] = !(dly_clk_en && dly_sel_reg==3'd2);
+    assign ncs_dly [3] = !(dly_clk_en && dly_sel_reg==3'd3);
+    assign ncs_dly [4] = !(dly_clk_en && dly_sel_reg==3'd4);
+    assign ncs_dly [5] = !(dly_clk_en && dly_sel_reg==3'd5);
+    assign ncs_dly [6] = !(dly_clk_en && dly_sel_reg==3'd6);
+
+    assign clk_dly  = (dly_clk_en) ? !tck : 0;
 
 //------------------------------------------------------------------------------------------------------------------
 // Occupy unused ALCT board signals to force pin instantiation
