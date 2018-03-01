@@ -219,7 +219,6 @@
     m_seq_cmd,
     m_seq_status,
     sc_done,
-    mc_done,
 
 // Reserved
     m_reserved_in,
@@ -368,7 +367,6 @@
     input   [1:0]   m_seq_cmd;      // Commands to sequencer    seq_cmd[1:0]/{seq_cmd2,seq_cmd3}
     output  [1:0]   m_seq_status;   // Sequencer status
     input           sc_done;        // Slow Control fpga done
-    input           mc_done;        // Mezzanine fpga done
 
 // Reserved
     input   [1:0]   m_reserved_in;  // Future use               reserved_in0/reserved_in2
@@ -1640,7 +1638,6 @@
     async_adb           |       // Test pulse from TMB
     tp_start_ext        |       // Test pulse from lemo input
     sc_done             |       // Slow Control fpga done
-    mc_done             |       // Mezzanine fpga done
     (|led[9:6])         |       // Unused LEDs
     (|led[4:0])         |       // Unused LEDs
     (|display[15:12]);          // Display mux
