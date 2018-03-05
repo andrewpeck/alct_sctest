@@ -3,9 +3,9 @@
 module PRBS_tx(
     input GEN_CLK,
     input RST,
-	  input INJ_ERR,
+    input INJ_ERR,
     output reg [47:0] PRBS,
-	  output reg STRT_LTNCY
+    output reg STRT_LTNCY
 );
 
 parameter start_pattern = 48'hFFFFFF000000;
@@ -24,8 +24,10 @@ assign rst_lfsr = RST || rst1;
 assign start_pat = rst1 & (!RST);  // start pat when reset goes low
 
 always @(posedge GEN_CLK) begin
-  rst1 <= RST;
-  STRT_LTNCY <= ~start_pat;
+
+  rst1       <= RST;
+  STRT_LTNCY <= start_pat;
+
   if (start_pat)
     PRBS <= start_pattern;
   else
@@ -54,10 +56,6 @@ end
 
 endmodule
 
-
-
-
-
 module PRBS_112 (
     input GEN_CLK,
     input RST,
@@ -84,8 +82,9 @@ assign rst_lfsr = RST || rst1;
 assign start_pat = rst1 & (!RST);  // start pat when reset goes low
 
 always @(posedge GEN_CLK) begin
-  rst1 <= RST;
-  STRT_LTNCY <= ~start_pat;
+  rst1       <= RST;
+  STRT_LTNCY <= start_pat;
+
   if (start_pat)
     PRBS <= start_pattern;
   else

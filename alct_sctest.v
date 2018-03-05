@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------------------------------------------
 //  `define VIRTEXE         1           // Must compile under ISE 8  or earlier
     `define SPARTAN6        1           // Must compile under ISE 13 or later
-//  `define LX150T          1           // Must compile under ISE 13 or later
+    `define LX150T          1           // Must compile under ISE 13 or later
 //  `define LX100           1           // Must compile under ISE 13 or later
-    `define LX150           1           // Must compile under ISE 13 or later
+//  `define LX150           1           // Must compile under ISE 13 or later
 
 // Firmware date
     `define MONTHDAY        16'h0123    // Version date
@@ -507,7 +507,7 @@
     .BANDWIDTH              ("OPTIMIZED"),          // "HIGH", "LOW" or "OPTIMIZED"
     .CLKFBOUT_MULT          (12),                   // Multiply value for all CLKOUT clock outputs (1-64)
     .CLKFBOUT_PHASE         (0.0),                  // Phase offset in degrees of the clock feedback output (0.0-360.0).
-    .CLKIN_PERIOD           ("25.000"),             // Input clock period in ns to ps resolution (i.e. 33.333 is 30
+    .CLKIN_PERIOD           (25.000),               // Input clock period in ns to ps resolution (i.e. 33.333 is 30)
 
     .CLK_FEEDBACK           ("CLKFBOUT"),           // Clock source to drive CLKFBIN ("CLKFBOUT" or "CLKOUT0")
     .COMPENSATION           ("SYSTEM_SYNCHRONOUS"), // "SYSTEM_SYNCHRONOUS", "SOURCE_SYNCHRONOUS", "EXTERNAL"
@@ -1616,7 +1616,7 @@
     assign ncs_dly [5] = !(dly_clk_en && dly_sel_reg==3'd5);
     assign ncs_dly [6] = !(dly_clk_en && dly_sel_reg==3'd6);
 
-    assign clk_dly  = (dly_clk_en) ? !tck : 0;
+    assign clk_dly  = (dly_clk_en) ? !tck : 1'b0;
 
 //------------------------------------------------------------------------------------------------------------------
 // Occupy unused ALCT board signals to force pin instantiation
