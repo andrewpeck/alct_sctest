@@ -87,7 +87,7 @@ module elink_o #(
     ////------------------------------
     // Instantiate a buffer for every bit of the data bus
     OBUFDS
-      #(.IOSTANDARD ("LVDS_25"))
+      #(.IOSTANDARD ("LVDS_33"))
      obufds_inst
        (.O          (DATA_OUT_TO_PINS_P  [pin_count]),
         .OB         (DATA_OUT_TO_PINS_N  [pin_count]),

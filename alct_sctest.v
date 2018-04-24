@@ -3,40 +3,7 @@
 //
 // ALCT Single Cable Test:  For Spartan-6 and Virtex-E Mezzanine Cards
 //
-//------------------------------------------------------------------------------------------------------------------
-// Select 1 target FPGA
-//------------------------------------------------------------------------------------------------------------------
-//  `define VIRTEXE         1           // Must compile under ISE 8  or earlier
-    `define SPARTAN6        1           // Must compile under ISE 13 or later
-    `define LX150T          1           // Must compile under ISE 13 or later
-//  `define LX100           1           // Must compile under ISE 13 or later
-//  `define LX150           1           // Must compile under ISE 13 or later
-
-// Firmware date
-    `define MONTHDAY        16'h0123    // Version date
-    `define YEAR            16'h2017    // Version date
-
-// Firmware device code read out
-    `ifdef  VIRTEXE
-      `define FPGA            16'h600E    // Virtex 600 E
-    `elsif  SPARTAN6
-      `ifdef  LX150
-      `define FPGA            16'h1506    // Spartan 6 150
-      `elsif  LX100
-      `define FPGA            16'h1006    // Spartan 6 150
-      `elsif  LX150T
-      `define FPGA            16'h1516    // Spartan 6 150
-      `endif
-    `else
-      `define FPGA            16'hDEAD    // Undefined FPGA
-    `endif
-
-//------------------------------------------------------------------------------------------------------------------
-// Select 1 board type:
-//------------------------------------------------------------------------------------------------------------------
-//  `define ALCT288     1           // XCV600E  FG680 7C 1 PROM  XC18V04
-//  `define ALCT384     1           // XCV600E  FG680 7C 1 PROM  XC18V04    or XC6SLX150 FGG900 2 PROM XCF32P+XCF08P
-    `define ALCT672     1           // XCV1000E FG680 7C 2 PROMs XC18V04
+`include "firmware_version.v"
 //
 //------------------------------------------------------------------------------------------------------------------
 //  04/17/2012  Initial, adapted from alct_loop_demo.v with jtag state machine from rat2005e
@@ -268,9 +235,15 @@
     input           clock_en;       // Clock enable
 
 // ADB Multiplexer
-    output  [1:0]   clk80;          // Multiplexer clocks 80MHz obuf f 24
-    output  [1:0]   clk40sh;        // Multiplexer clocks 40MHz
-    output          nmx_oe;         // Multiplexer enable, 0=en, pullup onboard
+   `ifdef ALCT672
+   parameter MXCLKOUT = 2;
+   `else
+   parameter MXCLKOUT = 1;
+   `endif
+
+    output  [MXCLKOUT-1:0] clk80;          // Multiplexer clocks 80MHz obuf f 24
+    output  [MXCLKOUT-1:0] clk40sh;        // Multiplexer clocks 40MHz
+    output                 nmx_oe;         // Multiplexer enable, 0=en, pullup onboard
 
 // ADB Signal Inputs 80MHz
 `ifdef ALCT672
@@ -486,14 +459,10 @@
 // Receive multiplexer clocks 80MHz ddr obuf fast 24ma
 `ifdef ALCT288
     clock_mirror uclk40_0 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[0]));
-    clock_mirror uclk40_1 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[1]));
     clock_mirror uclk80_0 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[0]  ));
-    clock_mirror uclk80_1 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[1]  ));
 `elsif ALCT384
     clock_mirror uclk40_0 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[0]));
-    clock_mirror uclk40_1 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[1]));
     clock_mirror uclk80_0 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[0]  ));
-    clock_mirror uclk80_1 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[1]  ));
 `elsif ALCT672
     clock_mirror uclk40_0 (.clock(clock_1x_90), .clock_180(~clock_1x_90), .mirror(clk40sh[0]));
     clock_mirror uclk40_1 (.clock(clock_1x_90), .clock_180(~clock_1x_90), .mirror(clk40sh[1]));
@@ -533,7 +502,7 @@
     `ifdef ALCT288
     .CLKOUT1_PHASE          ( 90.0),
     `elsif ALCT384
-    .CLKOUT1_PHASE          ( 90.0),
+    .CLKOUT1_PHASE          (135.0),
     `elsif ALCT672
     .CLKOUT1_PHASE          ( 45.0),
     `else
@@ -1198,13 +1167,13 @@
 //------------------------------------------------------------------------------------------------------------------
 
     reg [15:0] adb_mux;
-    reg [5:0]  adb_channel;
-    wire [8:0] adb_adr_masked = adb_adr_reg & ~9'h040;
+    reg  [5:0] adb_channel;
+    wire [8:0] adb_adr_masked = adb_adr_reg & ~9'h040; // Software ORs ch with 0x40, so blank it here
     always @(posedge clock) begin
       if (adb_adr_reg >= MXADBS)
         adb_channel <= {6{1'b1}};
       else
-        adb_channel <= adb_adr_masked[5:0];  // Software ORs ch with 0x40, so blank it here
+        adb_channel <= adb_adr_masked[5:0];
     end
 
     always @(posedge clock) begin
@@ -1611,10 +1580,14 @@
     assign ncs_dly [0] = !(dly_clk_en && dly_sel_reg==3'd0);
     assign ncs_dly [1] = !(dly_clk_en && dly_sel_reg==3'd1);
     assign ncs_dly [2] = !(dly_clk_en && dly_sel_reg==3'd2);
+	 `ifndef ALCT288
     assign ncs_dly [3] = !(dly_clk_en && dly_sel_reg==3'd3);
-    assign ncs_dly [4] = !(dly_clk_en && dly_sel_reg==3'd4);
-    assign ncs_dly [5] = !(dly_clk_en && dly_sel_reg==3'd5);
-    assign ncs_dly [6] = !(dly_clk_en && dly_sel_reg==3'd6);
+		`ifdef ALCT672 
+		assign ncs_dly [4] = !(dly_clk_en && dly_sel_reg==3'd4);
+		assign ncs_dly [5] = !(dly_clk_en && dly_sel_reg==3'd5);
+		assign ncs_dly [6] = !(dly_clk_en && dly_sel_reg==3'd6);
+		`endif
+	 `endif
 
     assign clk_dly  = (dly_clk_en) ? !tck : 1'b0;
 
@@ -1897,15 +1870,16 @@
       .refclk_p(refclk_p),
       .refclk_n(refclk_n),
 
-      .reset(!clock_lock)
+      .reset_i(!clock_lock)
 
     );
-
-  `elsif LX100
+	 
+  `endif
+  `ifdef LX100
 
     assign gbt_tx_datavalid = 1'b1;
 
-    optical_gbt  optical_gbt (
+    prbs_gbt  prbs_gbt (
 
       .elink_p(elink_p),
       .elink_n(elink_n),

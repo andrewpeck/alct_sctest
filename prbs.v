@@ -64,7 +64,7 @@ module PRBS_112 (
     output reg STRT_LTNCY
 );
 
-parameter start_pattern = 112'h5555555555555500000000000000;
+parameter start_pattern = 112'hfeeeeeeeeeeddeadbeeeeeeeeeef;
 
 wire [23:0] lfsr_a;
 wire [23:0] lfsr_b;
@@ -79,7 +79,7 @@ wire start_pat;
 
 assign rst_lfsr = RST || rst1;
 
-assign start_pat = rst1 & (!RST);  // start pat when reset goes low
+assign start_pat = rst1; // RST  ;// & (!RST);  // start pat when reset goes low
 
 always @(posedge GEN_CLK) begin
   rst1       <= RST;
@@ -89,9 +89,9 @@ always @(posedge GEN_CLK) begin
     PRBS <= start_pattern;
   else
     if(INJ_ERR)
-      PRBS <= {lfsr_a,lfsr_b,lfsr_c,lfsr_d,lfsr_e}^112'h0101010101010101010101010101;
+      PRBS <= ({lfsr_a,lfsr_b,lfsr_c,lfsr_d,lfsr_e})^112'hffffffffffffffffffffffffffff;
     else
-      PRBS <= {lfsr_a,lfsr_b,lfsr_c,lfsr_d,lfsr_e};
+      PRBS <= ({lfsr_a,lfsr_b,lfsr_c,lfsr_d,lfsr_e});
 end
 
 // Linear Feedback Shift Register

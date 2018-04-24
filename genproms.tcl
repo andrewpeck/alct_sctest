@@ -177,7 +177,9 @@ puts $f_id "setAttribute -configdevice -attr multiboot -value \"FALSE\""
 puts $f_id "setAttribute -configdevice -attr spiSelected -value \"FALSE\""
 puts $f_id "setAttribute -configdevice -attr spiSelected -value \"FALSE\""
 puts $f_id "addPromDevice -p 1 -size 0 -name xcf32p"
+if { [FPGA_MODEL != "LX100") } {
 puts $f_id "addPromDevice -p 2 -size 0 -name xcf08p"
+}
 puts $f_id "setMode -pff"
 puts $f_id "setMode -pff"
 puts $f_id "setSubmode -pffserial"

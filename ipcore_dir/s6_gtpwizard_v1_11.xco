@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Mon Mar 19 19:39:04 2018
+# Date: Tue Apr 24 20:52:12 2018
 #
 ##############################################################
 #
@@ -74,7 +74,7 @@ CSET cb_seq_2_4=00000000
 CSET cb_seq_2_4_disp=false
 CSET cb_seq_2_4_k=false
 CSET cb_seq_2_4_mask=true
-CSET cb_sequence_1_max_skew=1
+CSET cb_sequence_1_max_skew=8
 CSET cb_sequence_2_max_skew=1
 CSET cb_sequence_length=4
 CSET component_name=s6_gtpwizard_v1_11
@@ -426,4 +426,4 @@ CSET use_two_cb_sequences=false
 MISC pkg_timestamp=2011-04-06T10:16:39Z
 # END Extra information
 GENERATE
-# CRC: 3adabb3e
+# CRC: 3539a315

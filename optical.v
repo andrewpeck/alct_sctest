@@ -1,4 +1,3 @@
-parameter SIMULATION = 0;
 
 module optical_lx150t (
 
@@ -10,9 +9,11 @@ module optical_lx150t (
   input        refclk_p,
   input        refclk_n,
 
-  input        reset
+  input        reset_i
 
 );
+
+  parameter SIMULATION = 0;
 
   wire [1:0] rx_p = 2'b11;
   wire [1:0] rx_n = 2'b00;
@@ -32,6 +33,9 @@ module optical_lx150t (
 
    wire [15:0] vio_out;
 
+   // `define USE_CHIPSCOPE
+
+   `ifdef USE_CHIPSCOPE
    csp_controller alct_optical_test_controller (
       .CONTROL0(csp_control0), // INOUT BUS [35:0]
       .CONTROL1(csp_control1)  // INOUT BUS [35:0]
@@ -53,10 +57,22 @@ module optical_lx150t (
    wire inj_err_vio              = ~SIMULATION & vio_out[15];
 
    wire [3:0] txdiffctrl_vio     = vio_out[14:11];
-   wire [3:0] txpreemphasis_vio  = vio_out[10:7];
+   wire [2:0] txpreemphasis_vio  = vio_out[10:8];
 
-   wire vio_ctrl_tx              = ~SIMULATION & vio_out[1];
-   wire reset_cnt                = ~SIMULATION & vio_out[0];
+   wire reset_cnt                = ~simulation & vio_out[0];
+   wire vio_ctrl_tx              = ~simulation & vio_out[1];
+   wire reset_vio                = ~simulation & vio_out[2];
+   `else
+   wire inj_err_vio              = 0;
+   wire [3:0] txdiffctrl_vio     = 0;
+   wire [2:0] txpreemphasis_vio  = 0;
+   wire reset_cnt                = 1'b0;
+   wire vio_ctrl_tx              = 1'b0;
+   wire reset_vio                = 1'b0;
+  `endif
+
+   wire reset = reset_i;
+
 
 
    wire [1:0] bonding_frame_received;
@@ -120,7 +136,7 @@ module optical_lx150t (
    (* keep = "true" *) reg  [1:0] restart_sequence=0;
    (* keep = "true" *) wire [1:0] start_sequence_detect;
    (* keep = "true" *) wire [1:0] reset_rx_prbs;
-   (* keep = "true" *) wire reset_tx_prbs = reset || !resetdone;
+   (* keep = "true" *) wire reset_tx_prbs = reset || !resetdone || reset_vio;
    reg  [1:0] reset_rx_prbs_dly1;
 
    (* keep = "true" *)
@@ -139,9 +155,9 @@ module optical_lx150t (
    initial    good_frame_count [1] = 0;
 
    PRBS_tx prbs0  (
-      .GEN_CLK    (clock_async),            //
+      .GEN_CLK    (clock_async),      //
       .RST        (reset_rx_prbs[0]), // keep the prbs off until the gtp is done
-      .INJ_ERR    (1'b0),             //
+      .INJ_ERR    (inj_err_vio),      //
       .PRBS       (prbs_data[0]),     // 48 bit data
       .STRT_LTNCY (strt_ltncy_rx[0])  // first pattern starting after reset
    );
@@ -228,10 +244,8 @@ module optical_lx150t (
    // periodically (every ~1 second) restart the prbs and re-send the start-of-sequence marker
    // -- lets the receiving board "catch" the data without relying oon being active and connected at startup
 
-   // parameter clock_count_max = 'd1;
-
    // parameter clock_count_max = 'h2638e98;
-   parameter clock_count_max = 'h32;
+   parameter clock_count_max = 'h64;
 
    (* keep = "true" *) reg restart_tx_sequence=0;
    (* keep = "true" *) reg [1:0] restart_rx_sequence = 2'b00;
@@ -300,7 +314,7 @@ module optical_lx150t (
       end
    end
 
-   // need to properly transfer from CMS40 to async80
+   // need to properly transfer from CMS40
 
    (* keep = "true" *) wire tx_fifo_empty;
 
@@ -382,11 +396,11 @@ module optical_lx150t (
    wire [2:0] rxpllrefseldy  = 3'd0;
    wire [2:0] rxeqmix        = 3'd0;
 
-   wire [3:0] txdiffctrl_default     = 4'd8;
-   wire [3:0] txpreemphasis_default  = 4'd0;
+   wire [3:0] txdiffctrl_default     = 4'd6;
+   wire [2:0] txpreemphasis_default  = 3'd0;
 
    wire [3:0] txdiffctrl     = vio_ctrl_tx ? txdiffctrl_vio     : txdiffctrl_default;
-   wire [3:0] txpreemphasis  = vio_ctrl_tx ? txpreemphasis_vio  : txpreemphasis_default;
+   wire [2:0] txpreemphasis  = vio_ctrl_tx ? txpreemphasis_vio  : txpreemphasis_default;
 
    reg rxenchansync = 0;
    always @(posedge clock) begin

@@ -50,7 +50,7 @@ module s6_gtp_dual_wrapper (
   );
 
  wire tile0_gtpclkout0_bufio2;
- wire [1:0] plllkdet;
+ wire plllkdet;
 
    //-------------------------------------------------------------------------------------------------------------------
    // below here should be copy pasted from s6_gtpwizard_v1-11_top.v
@@ -67,7 +67,6 @@ module s6_gtp_dual_wrapper (
     wire            tile0_gtpreset0_i;
     wire            tile0_gtpreset1_i;
     wire            tile0_plllkdet0_i;
-    wire            tile0_plllkdet1_i;
     wire            tile0_resetdone0_i;
     wire            tile0_resetdone1_i;
     //--------------------- Receive Ports - 8b10b Decoder ----------------------
@@ -153,7 +152,7 @@ module s6_gtp_dual_wrapper (
  //----------------------------------------------------------------------------------------------------
 
    wire pll_fb_out;
-   wire pll_reset = ~plllkdet[0];
+   wire pll_reset = ~plllkdet;
 
    // Instantiate a DCM module to divide the reference clock. Uses internal feedback
    // for improved jitter performance, and to avoid consuming an additional BUFG
@@ -167,7 +166,7 @@ module s6_gtp_dual_wrapper (
         .CLKIN_PERIOD      (3.125), // taken from 320 MHz txoutclk
 
         .CLKOUT0_DIVIDE    (16), // 40 MHz  = 320 * 2 / 16
-        .CLKOUT1_DIVIDE    (8), // 80 MHz  = 320 * 2 / 8
+        .CLKOUT1_DIVIDE    (8),  // 80 MHz  = 320 * 2 / 8
         .CLKOUT2_DIVIDE    (4),  // 160 MHz = 320 * 2 / 4
         .CLKOUT3_DIVIDE    (2),
 
@@ -228,8 +227,7 @@ module s6_gtp_dual_wrapper (
    assign tile0_rxpowerdown1_i = {2{rxpowerdown1}};
    assign tile0_rxpowerdown0_i = {2{rxpowerdown0}};
 
-   assign plllkdet[0] = tile0_plllkdet0_i;
-   assign plllkdet[1] = tile0_plllkdet1_i;
+   assign plllkdet = tile0_plllkdet0_i;
 
    assign reset_done = tile0_resetdone0_i || tile0_resetdone1_i;
 
