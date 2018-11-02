@@ -1,0 +1,393 @@
+NET "adc_eoc"            LOC = "A20"  | IOSTANDARD = LVCMOS33; # mez_signal adc_eoc
+NET "adc_ncs"            LOC = "B22"  | IOSTANDARD = LVCMOS33; # mez_signal adc_ncs
+NET "adc_sck"            LOC = "A21"  | IOSTANDARD = LVCMOS33; # mez_signal adc_sck
+NET "adc_sdi"            LOC = "C21"  | IOSTANDARD = LVCMOS33; # mez_signal adc_sdi
+NET "adc_sdo"            LOC = "A22"  | IOSTANDARD = LVCMOS33; # mez_signal adc_sdo
+NET "alct_sn"            LOC = "B20"  | IOSTANDARD = LVCMOS33; # XP2A_29    alct_sn
+NET "amu_grn"            LOC = "F16"  | IOSTANDARD = LVCMOS33; # XP2B_28    amu_grn
+NET "async_adb"          LOC = "E9"   | IOSTANDARD = LVCMOS33; # XP2D_14    async_adb
+NET "clk40sh<0>"         LOC = "AA13" | IOSTANDARD = LVCMOS33; # XP3A_21    clk_out40sh
+NET "clk80<0>"           LOC = "AB13" | IOSTANDARD = LVCMOS33; # XP3A_20    clk_out80
+NET "clk_dly"            LOC = "U13"  | IOSTANDARD = LVCMOS33; # XP3C_19    clk_dly
+NET "clock_en"           LOC = "D11"  | IOSTANDARD = LVCMOS33; # XP2C_14    clock_en
+NET "clock_mez"          LOC = "A14"  | IOSTANDARD = LVCMOS33; # XP2D_21    clock
+NET "din_dly"            LOC = "AC12" | IOSTANDARD = LVCMOS33; # XP3B_19    din_dly
+NET "dout_dly<0>"        LOC = "AD12" | IOSTANDARD = LVCMOS33; # XP3B_17    dout_dly0
+NET "dout_dly<1>"        LOC = "AF13" | IOSTANDARD = LVCMOS33; # XP3B_18    dout_dly1
+NET "dout_dly<2>"        LOC = "U12"  | IOSTANDARD = LVCMOS33; # XP3B_23    dout_dly2
+NET "dout_dly<3>"        LOC = "V7"   | IOSTANDARD = LVCMOS33; # XP3B_24    dout_dly3
+NET "feb0_grn"           LOC = "C18"  | IOSTANDARD = LVCMOS33; # XP2B_25    feb0_grn
+NET "feb1_grn"           LOC = "A18"  | IOSTANDARD = LVCMOS33; # XP2A_25    feb1_grn
+NET "feb2_grn"           LOC = "C19"  | IOSTANDARD = LVCMOS33; # XP2D_26    feb2_grn
+NET "feb3_grn"           LOC = "F15"  | IOSTANDARD = LVCMOS33; # XP2C_26    feb3_grn
+NET "feb4_grn"           LOC = "D18"  | IOSTANDARD = LVCMOS33; # XP2B_26    feb4_grn
+NET "feb5_grn"           LOC = "A19"  | IOSTANDARD = LVCMOS33; # XP2A_26    feb5_grn
+NET "feb6_grn"           LOC = "H17"  | IOSTANDARD = LVCMOS33; # XP2D_27    feb6_grn
+NET "halt_red"           LOC = "E16"  | IOSTANDARD = LVCMOS33; # XP2C_28    halt_red
+NET "invpat_red"         LOC = "G17"  | IOSTANDARD = LVCMOS33; # XP2A_28    invpat_red
+NET "jstate0_grn"        LOC = "C16"  | IOSTANDARD = LVCMOS33; # XP2B_24    jstate0_grn
+NET "jstate1_grn"        LOC = "A17"  | IOSTANDARD = LVCMOS33; # XP2A_24    jstate1_grn
+NET "jstate2_grn"        LOC = "B18"  | IOSTANDARD = LVCMOS33; # XP2D_25    jstate2_grn
+NET "jstate3_grn"        LOC = "E14"  | IOSTANDARD = LVCMOS33; # XP2C_25    jstate3_grn
+NET "l1a_ok_grn"         LOC = "C20"  | IOSTANDARD = LVCMOS33; # XP2C_29    l1a_ok_grn
+NET "lct0_<0>"           LOC = "J4"   | IOSTANDARD = LVCMOS33; # XP1A_29    lct0_0
+NET "lct0_<1>"           LOC = "L2"   | IOSTANDARD = LVCMOS33; # XP1B_29    lct0_1
+NET "lct0_<2>"           LOC = "P5"   | IOSTANDARD = LVCMOS33; # XP1C_29    lct0_2
+NET "lct0_<3>"           LOC = "L1"   | IOSTANDARD = LVCMOS33; # XP1D_29    lct0_3
+NET "lct0_<4>"           LOC = "K5"   | IOSTANDARD = LVCMOS33; # XP1A_30    lct0_4
+NET "lct0_<5>"           LOC = "M4"   | IOSTANDARD = LVCMOS33; # XP1B_30    lct0_5
+NET "lct0_<6>"           LOC = "P3"   | IOSTANDARD = LVCMOS33; # XP1C_30    lct0_6
+NET "lct0_<7>"           LOC = "M1"   | IOSTANDARD = LVCMOS33; # XP1D_30    lct0_7
+NET "lct0_<8>"           LOC = "L3"   | IOSTANDARD = LVCMOS33; # XP1A_31    lct0_8
+NET "lct0_<9>"           LOC = "N4"   | IOSTANDARD = LVCMOS33; # XP1B_31    lct0_9
+NET "lct0_<10>"          LOC = "P1"   | IOSTANDARD = LVCMOS33; # XP1C_31    lct0_10
+NET "lct0_<11>"          LOC = "N1"   | IOSTANDARD = LVCMOS33; # XP1D_31    lct0_11
+NET "lct0_<12>"          LOC = "N5"   | IOSTANDARD = LVCMOS33; # XP1A_32    lct0_12
+NET "lct0_<13>"          LOC = "P6"   | IOSTANDARD = LVCMOS33; # XP1B_32    lct0_13
+NET "lct0_<14>"          LOC = "R2"   | IOSTANDARD = LVCMOS33; # XP1C_32    lct0_14
+NET "lct0_<15>"          LOC = "R1"   | IOSTANDARD = LVCMOS33; # XP1D_32    lct0_15
+NET "lct0_<16>"          LOC = "N6"   | IOSTANDARD = LVCMOS33; # XP1A_33    lct0_16
+NET "lct0_<17>"          LOC = "R4"   | IOSTANDARD = LVCMOS33; # XP1B_33    lct0_17
+NET "lct0_<18>"          LOC = "R3"   | IOSTANDARD = LVCMOS33; # XP1C_33    lct0_18
+NET "lct0_<19>"          LOC = "T1"   | IOSTANDARD = LVCMOS33; # XP1D_33    lct0_19
+NET "lct0_<20>"          LOC = "N7"   | IOSTANDARD = LVCMOS33; # XP1A_34    lct0_20
+NET "lct0_<21>"          LOC = "T4"   | IOSTANDARD = LVCMOS33; # XP1B_34    lct0_21
+NET "lct0_<22>"          LOC = "T3"   | IOSTANDARD = LVCMOS33; # XP1C_34    lct0_22
+NET "lct0_<23>"          LOC = "U1"   | IOSTANDARD = LVCMOS33; # XP1D_34    lct0_23
+NET "lct0_<24>"          LOC = "N8"   | IOSTANDARD = LVCMOS33; # XP1A_35    lct0_24
+NET "lct0_<25>"          LOC = "T6"   | IOSTANDARD = LVCMOS33; # XP1B_35    lct0_25
+NET "lct0_<26>"          LOC = "U2"   | IOSTANDARD = LVCMOS33; # XP1C_35    lct0_26
+NET "lct0_<27>"          LOC = "V1"   | IOSTANDARD = LVCMOS33; # XP1D_35    lct0_27
+NET "lct0_<28>"          LOC = "P7"   | IOSTANDARD = LVCMOS33; # XP1A_36    lct0_28
+NET "lct0_<29>"          LOC = "U3"   | IOSTANDARD = LVCMOS33; # XP1B_36    lct0_29
+NET "lct0_<30>"          LOC = "V3"   | IOSTANDARD = LVCMOS33; # XP1C_36    lct0_30
+NET "lct0_<31>"          LOC = "W1"   | IOSTANDARD = LVCMOS33; # XP1D_36    lct0_31
+NET "lct0_<32>"          LOC = "R5"   | IOSTANDARD = LVCMOS33; # XP1A_37    lct0_32
+NET "lct0_<33>"          LOC = "V4"   | IOSTANDARD = LVCMOS33; # XP1B_37    lct0_33
+NET "lct0_<34>"          LOC = "W2"   | IOSTANDARD = LVCMOS33; # XP1C_37    lct0_34
+NET "lct0_<35>"          LOC = "Y1"   | IOSTANDARD = LVCMOS33; # XP1D_37    lct0_35
+NET "lct0_<36>"          LOC = "W3"   | IOSTANDARD = LVCMOS33; # XP1A_38    lct0_36
+NET "lct0_<37>"          LOC = "AA3"  | IOSTANDARD = LVCMOS33; # XP1B_38    lct0_37
+NET "lct0_<38>"          LOC = "AA2"  | IOSTANDARD = LVCMOS33; # XP1C_38    lct0_38
+NET "lct0_<39>"          LOC = "AA1"  | IOSTANDARD = LVCMOS33; # XP1D_38    lct0_39
+NET "lct0_<40>"          LOC = "AB3"  | IOSTANDARD = LVCMOS33; # XP3A_3     lct0_40
+NET "lct0_<41>"          LOC = "AB1"  | IOSTANDARD = LVCMOS33; # XP3B_3     lct0_41
+NET "lct0_<42>"          LOC = "AC3"  | IOSTANDARD = LVCMOS33; # XP3C_3     lct0_42
+NET "lct0_<43>"          LOC = "AC1"  | IOSTANDARD = LVCMOS33; # XP3D_3     lct0_43
+NET "lct0_<44>"          LOC = "W5"   | IOSTANDARD = LVCMOS33; # XP3A_4     lct0_44
+NET "lct0_<45>"          LOC = "U5"   | IOSTANDARD = LVCMOS33; # XP3B_4     lct0_45
+NET "lct0_<46>"          LOC = "AC2"  | IOSTANDARD = LVCMOS33; # XP3C_4     lct0_46
+NET "lct0_<47>"          LOC = "V6"   | IOSTANDARD = LVCMOS33; # XP3D_4     lct0_47
+NET "lct1_<0>"           LOC = "V5"   | IOSTANDARD = LVCMOS33; # XP3A_5     lct1_0
+NET "lct1_<1>"           LOC = "Y3"   | IOSTANDARD = LVCMOS33; # XP3B_5     lct1_1
+NET "lct1_<2>"           LOC = "AD1"  | IOSTANDARD = LVCMOS33; # XP3C_5     lct1_2
+NET "lct1_<3>"           LOC = "AC4"  | IOSTANDARD = LVCMOS33; # XP3D_5     lct1_3
+NET "lct1_<4>"           LOC = "W7"   | IOSTANDARD = LVCMOS33; # XP3A_6     lct1_4
+NET "lct1_<5>"           LOC = "AA4"  | IOSTANDARD = LVCMOS33; # XP3B_6     lct1_5
+NET "lct1_<6>"           LOC = "AD3"  | IOSTANDARD = LVCMOS33; # XP3C_6     lct1_6
+NET "lct1_<7>"           LOC = "AB4"  | IOSTANDARD = LVCMOS33; # XP3D_6     lct1_7
+NET "lct1_<8>"           LOC = "Y6"   | IOSTANDARD = LVCMOS33; # XP3A_7     lct1_8
+NET "lct1_<9>"           LOC = "AB7"  | IOSTANDARD = LVCMOS33; # XP3B_7     lct1_9
+NET "lct1_<10>"          LOC = "AE1"  | IOSTANDARD = LVCMOS33; # XP3C_7     lct1_10
+NET "lct1_<11>"          LOC = "AB5"  | IOSTANDARD = LVCMOS33; # XP3D_7     lct1_11
+NET "lct1_<12>"          LOC = "AA5"  | IOSTANDARD = LVCMOS33; # XP3A_8     lct1_12
+NET "lct1_<13>"          LOC = "AA7"  | IOSTANDARD = LVCMOS33; # XP3B_8     lct1_13
+NET "lct1_<14>"          LOC = "AE2"  | IOSTANDARD = LVCMOS33; # XP3C_8     lct1_14
+NET "lct1_<15>"          LOC = "AF2"  | IOSTANDARD = LVCMOS33; # XP3D_8     lct1_15
+NET "lct1_<16>"          LOC = "AA8"  | IOSTANDARD = LVCMOS33; # XP3A_9     lct1_16
+NET "lct1_<17>"          LOC = "AB9"  | IOSTANDARD = LVCMOS33; # XP3B_9     lct1_17
+NET "lct1_<18>"          LOC = "AE3"  | IOSTANDARD = LVCMOS33; # XP3C_9     lct1_18
+NET "lct1_<19>"          LOC = "AD4"  | IOSTANDARD = LVCMOS33; # XP3D_9     lct1_19
+NET "lct1_<20>"          LOC = "Y9"   | IOSTANDARD = LVCMOS33; # XP3A_10    lct1_20
+NET "lct1_<21>"          LOC = "AA9"  | IOSTANDARD = LVCMOS33; # XP3B_10    lct1_21
+NET "lct1_<22>"          LOC = "AD5"  | IOSTANDARD = LVCMOS33; # XP3C_10    lct1_22
+NET "lct1_<23>"          LOC = "AF5"  | IOSTANDARD = LVCMOS33; # XP3D_10    lct1_23
+NET "lct1_<24>"          LOC = "Y10"  | IOSTANDARD = LVCMOS33; # XP3A_11    lct1_24
+NET "lct1_<25>"          LOC = "W11"  | IOSTANDARD = LVCMOS33; # XP3B_11    lct1_25
+NET "lct1_<26>"          LOC = "AE5"  | IOSTANDARD = LVCMOS33; # XP3C_11    lct1_26
+NET "lct1_<27>"          LOC = "AC5"  | IOSTANDARD = LVCMOS33; # XP3D_11    lct1_27
+NET "lct1_<28>"          LOC = "Y5"   | IOSTANDARD = LVCMOS33; # XP3A_12    lct1_28
+NET "lct1_<29>"          LOC = "AA11" | IOSTANDARD = LVCMOS33; # XP3B_12    lct1_29
+NET "lct1_<30>"          LOC = "AB6"  | IOSTANDARD = LVCMOS33; # XP3C_12    lct1_30
+NET "lct1_<31>"          LOC = "AF6"  | IOSTANDARD = LVCMOS33; # XP3D_12    lct1_31
+NET "lct1_<32>"          LOC = "AF12" | IOSTANDARD = LVCMOS33; # XP3A_13    lct1_32
+NET "lct1_<33>"          LOC = "AC7"  | IOSTANDARD = LVCMOS33; # XP3B_13    lct1_33
+NET "lct1_<34>"          LOC = "AD6"  | IOSTANDARD = LVCMOS33; # XP3C_13    lct1_34
+NET "lct1_<35>"          LOC = "AD7"  | IOSTANDARD = LVCMOS33; # XP3D_13    lct1_35
+NET "lct1_<36>"          LOC = "W12"  | IOSTANDARD = LVCMOS33; # XP3A_14    lct1_36
+NET "lct1_<37>"          LOC = "AB11" | IOSTANDARD = LVCMOS33; # XP3B_14    lct1_37
+NET "lct1_<38>"          LOC = "AF8"  | IOSTANDARD = LVCMOS33; # XP3C_14    lct1_38
+NET "lct1_<39>"          LOC = "AD8"  | IOSTANDARD = LVCMOS33; # XP3D_14    lct1_39
+NET "lct1_<40>"          LOC = "AA12" | IOSTANDARD = LVCMOS33; # XP3A_15    lct1_40
+NET "lct1_<41>"          LOC = "AB8"  | IOSTANDARD = LVCMOS33; # XP3B_15    lct1_41
+NET "lct1_<42>"          LOC = "AE11" | IOSTANDARD = LVCMOS33; # XP3C_15    lct1_42
+NET "lct1_<43>"          LOC = "AD9"  | IOSTANDARD = LVCMOS33; # XP3D_15    lct1_43
+NET "lct1_<44>"          LOC = "AC9"  | IOSTANDARD = LVCMOS33; # XP3A_16    lct1_44
+NET "lct1_<45>"          LOC = "AD11" | IOSTANDARD = LVCMOS33; # XP3B_16    lct1_45
+NET "lct1_<46>"          LOC = "AF11" | IOSTANDARD = LVCMOS33; # XP3C_16    lct1_46
+NET "lct1_<47>"          LOC = "AE13" | IOSTANDARD = LVCMOS33; # XP3D_16    lct1_47
+NET "lct2_<0>"           LOC = "V8"   | IOSTANDARD = LVCMOS33; # XP3A_25    lct2_0
+NET "lct2_<1>"           LOC = "AA14" | IOSTANDARD = LVCMOS33; # XP3B_25    lct2_1
+NET "lct2_<2>"           LOC = "AC14" | IOSTANDARD = LVCMOS33; # XP3C_25    lct2_2
+NET "lct2_<3>"           LOC = "V14"  | IOSTANDARD = LVCMOS33; # XP3D_25    lct2_3
+NET "lct2_<4>"           LOC = "Y8"   | IOSTANDARD = LVCMOS33; # XP3A_26    lct2_4
+NET "lct2_<5>"           LOC = "AA15" | IOSTANDARD = LVCMOS33; # XP3B_26    lct2_5
+NET "lct2_<6>"           LOC = "AD15" | IOSTANDARD = LVCMOS33; # XP3C_26    lct2_6
+NET "lct2_<7>"           LOC = "AC13" | IOSTANDARD = LVCMOS33; # XP3D_26    lct2_7
+NET "lct2_<8>"           LOC = "W9"   | IOSTANDARD = LVCMOS33; # XP3A_27    lct2_8
+NET "lct2_<9>"           LOC = "Y16"  | IOSTANDARD = LVCMOS33; # XP3B_27    lct2_9
+NET "lct2_<10>"          LOC = "AC16" | IOSTANDARD = LVCMOS33; # XP3C_27    lct2_10
+NET "lct2_<11>"          LOC = "W10"  | IOSTANDARD = LVCMOS33; # XP3D_27    lct2_11
+NET "lct2_<12>"          LOC = "AD17" | IOSTANDARD = LVCMOS33; # XP3A_28    lct2_12
+NET "lct2_<13>"          LOC = "W16"  | IOSTANDARD = LVCMOS33; # XP3B_28    lct2_13
+NET "lct2_<14>"          LOC = "AB18" | IOSTANDARD = LVCMOS33; # XP3C_28    lct2_14
+NET "lct2_<15>"          LOC = "V11"  | IOSTANDARD = LVCMOS33; # XP3D_28    lct2_15
+NET "lct2_<16>"          LOC = "AA17" | IOSTANDARD = LVCMOS33; # XP3A_29    lct2_16
+NET "lct2_<17>"          LOC = "AB15" | IOSTANDARD = LVCMOS33; # XP3B_29    lct2_17
+NET "lct2_<18>"          LOC = "AD19" | IOSTANDARD = LVCMOS33; # XP3C_29    lct2_18
+NET "lct2_<19>"          LOC = "V12"  | IOSTANDARD = LVCMOS33; # XP3D_29    lct2_19
+NET "lct2_<20>"          LOC = "W14"  | IOSTANDARD = LVCMOS33; # XP3A_30    lct2_20
+NET "lct2_<21>"          LOC = "AC15" | IOSTANDARD = LVCMOS33; # XP3B_30    lct2_21
+NET "lct2_<22>"          LOC = "AC20" | IOSTANDARD = LVCMOS33; # XP3C_30    lct2_22
+NET "lct2_<23>"          LOC = "Y14"  | IOSTANDARD = LVCMOS33; # XP3D_30    lct2_23
+NET "lct2_<24>"          LOC = "Y15"  | IOSTANDARD = LVCMOS33; # XP3A_31    lct2_24
+NET "lct2_<25>"          LOC = "AC17" | IOSTANDARD = LVCMOS33; # XP3B_31    lct2_25
+NET "lct2_<26>"          LOC = "V10"  | IOSTANDARD = LVCMOS33; # XP3C_31    lct2_26
+NET "lct2_<27>"          LOC = "U15"  | IOSTANDARD = LVCMOS33; # XP3D_31    lct2_27
+NET "lct2_<28>"          LOC = "V15"  | IOSTANDARD = LVCMOS33; # XP3A_32    lct2_28
+NET "lct2_<29>"          LOC = "AB17" | IOSTANDARD = LVCMOS33; # XP3B_32    lct2_29
+NET "lct2_<30>"          LOC = "U9"   | IOSTANDARD = LVCMOS33; # XP3C_32    lct2_30
+NET "lct2_<31>"          LOC = "AF15" | IOSTANDARD = LVCMOS33; # XP3D_32    lct2_31             // AF15
+NET "lct2_<32>"          LOC = "V17"  | IOSTANDARD = LVCMOS33; # XP3A_33    lct2_32
+NET "lct2_<33>"          LOC = "AC19" | IOSTANDARD = LVCMOS33; # XP3B_33    lct2_33
+NET "lct2_<34>"          LOC = "T10"  | IOSTANDARD = LVCMOS33; # XP3C_33    lct2_34
+NET "lct2_<35>"          LOC = "W17"  | IOSTANDARD = LVCMOS33; # XP3D_33    lct2_35
+NET "lct2_<36>"          LOC = "AA18" | IOSTANDARD = LVCMOS33; # XP3A_34    lct2_36
+NET "lct2_<37>"          LOC = "W19"  | IOSTANDARD = LVCMOS33; # XP3B_34    lct2_37
+NET "lct2_<38>"          LOC = "AA19" | IOSTANDARD = LVCMOS33; # XP3C_34    lct2_38
+NET "lct2_<39>"          LOC = "AB21" | IOSTANDARD = LVCMOS33; # XP3D_34    lct2_39
+NET "lct2_<40>"          LOC = "V19"  | IOSTANDARD = LVCMOS33; # XP3A_35    lct2_40
+NET "lct2_<41>"          LOC = "V20"  | IOSTANDARD = LVCMOS33; # XP3B_35    lct2_41
+NET "lct2_<42>"          LOC = "AA23" | IOSTANDARD = LVCMOS33; # XP3C_35    lct2_42
+NET "lct2_<43>"          LOC = "AC23" | IOSTANDARD = LVCMOS33; # XP3D_35    lct2_43
+NET "lct2_<44>"          LOC = "AD21" | IOSTANDARD = LVCMOS33; # XP3A_36    lct2_44
+NET "lct2_<45>"          LOC = "U21"  | IOSTANDARD = LVCMOS33; # XP3B_36    lct2_45
+NET "lct2_<46>"          LOC = "AA24" | IOSTANDARD = LVCMOS33; # XP3C_36    lct2_46
+NET "lct2_<47>"          LOC = "AC24" | IOSTANDARD = LVCMOS33; # XP3D_36    lct2_47
+NET "lct3_<0>"           LOC = "Y21"  | IOSTANDARD = LVCMOS33; # XP3A_37    lct3_0
+NET "lct3_<1>"           LOC = "U22"  | IOSTANDARD = LVCMOS33; # XP3B_37    lct3_1
+NET "lct3_<2>"           LOC = "W22"  | IOSTANDARD = LVCMOS33; # XP3C_37    lct3_2
+NET "lct3_<3>"           LOC = "AB22" | IOSTANDARD = LVCMOS33; # XP3D_37    lct3_3
+NET "lct3_<4>"           LOC = "T22"  | IOSTANDARD = LVCMOS33; # XP3A_38    lct3_4
+NET "lct3_<5>"           LOC = "U23"  | IOSTANDARD = LVCMOS33; # XP3B_38    lct3_5
+NET "lct3_<6>"           LOC = "V22"  | IOSTANDARD = LVCMOS33; # XP3C_38    lct3_6
+NET "lct3_<7>"           LOC = "AA22" | IOSTANDARD = LVCMOS33; # XP3D_38    lct3_7
+NET "lct3_<8>"           LOC = "T20"  | IOSTANDARD = LVCMOS33; # XP4D_38    lct3_8
+NET "lct3_<9>"           LOC = "L21"  | IOSTANDARD = LVCMOS33; # XP4C_38    lct3_9
+NET "lct3_<10>"          LOC = "R23"  | IOSTANDARD = LVCMOS33; # XP4B_38    lct3_10
+NET "lct3_<11>"          LOC = "R22"  | IOSTANDARD = LVCMOS33; # XP4A_38    lct3_11
+NET "lct3_<12>"          LOC = "K22"  | IOSTANDARD = LVCMOS33; # XP4D_37    lct3_12
+NET "lct3_<13>"          LOC = "K20"  | IOSTANDARD = LVCMOS33; # XP4C_37    lct3_13
+NET "lct3_<14>"          LOC = "R21"  | IOSTANDARD = LVCMOS33; # XP4B_37    lct3_14
+NET "lct3_<15>"          LOC = "R20"  | IOSTANDARD = LVCMOS33; # XP4A_37    lct3_15
+NET "lct3_<16>"          LOC = "J22"  | IOSTANDARD = LVCMOS33; # XP4D_36    lct3_16
+NET "lct3_<17>"          LOC = "H19"  | IOSTANDARD = LVCMOS33; # XP4C_36    lct3_17
+NET "lct3_<18>"          LOC = "N20"  | IOSTANDARD = LVCMOS33; # XP4B_36    lct3_18
+NET "lct3_<19>"          LOC = "P17"  | IOSTANDARD = LVCMOS33; # XP4A_36    lct3_19
+NET "lct3_<20>"          LOC = "R18"  | IOSTANDARD = LVCMOS33; # XP4D_35    lct3_20
+NET "lct3_<21>"          LOC = "H20"  | IOSTANDARD = LVCMOS33; # XP4C_35    lct3_21
+NET "lct3_<22>"          LOC = "N25"  | IOSTANDARD = LVCMOS33; # XP4B_35    lct3_22
+NET "lct3_<23>"          LOC = "N26"  | IOSTANDARD = LVCMOS33; # XP4A_35    lct3_23
+NET "lct3_<24>"          LOC = "M21"  | IOSTANDARD = LVCMOS33; # XP4D_34    lct3_24
+NET "lct3_<25>"          LOC = "H21"  | IOSTANDARD = LVCMOS33; # XP4C_34    lct3_25
+NET "lct3_<26>"          LOC = "M24"  | IOSTANDARD = LVCMOS33; # XP4B_34    lct3_26
+NET "lct3_<27>"          LOC = "L26"  | IOSTANDARD = LVCMOS33; # XP4A_34    lct3_27
+NET "lct3_<28>"          LOC = "G19"  | IOSTANDARD = LVCMOS33; # XP4D_33    lct3_28
+NET "lct3_<29>"          LOC = "M26"  | IOSTANDARD = LVCMOS33; # XP4C_33    lct3_29
+NET "lct3_<30>"          LOC = "L25"  | IOSTANDARD = LVCMOS33; # XP4B_33    lct3_30
+NET "lct3_<31>"          LOC = "U24"  | IOSTANDARD = LVCMOS33; # XP4A_33    lct3_31
+NET "lct3_<32>"          LOC = "P18"  | IOSTANDARD = LVCMOS33; # XP4D_32    lct3_32
+NET "lct3_<33>"          LOC = "L20"  | IOSTANDARD = LVCMOS33; # XP4C_32    lct3_33
+NET "lct3_<34>"          LOC = "K26"  | IOSTANDARD = LVCMOS33; # XP4B_32    lct3_34
+NET "lct3_<35>"          LOC = "T23"  | IOSTANDARD = LVCMOS33; # XP4A_32    lct3_35
+NET "lct3_<36>"          LOC = "H22"  | IOSTANDARD = LVCMOS33; # XP4D_31    lct3_36
+NET "lct3_<37>"          LOC = "P10"  | IOSTANDARD = LVCMOS33; # XP4C_31    lct3_37
+NET "lct3_<38>"          LOC = "K24"  | IOSTANDARD = LVCMOS33; # XP4B_31    lct3_38
+NET "lct3_<39>"          LOC = "R24"  | IOSTANDARD = LVCMOS33; # XP4A_31    lct3_39
+NET "lct3_<40>"          LOC = "N9"   | IOSTANDARD = LVCMOS33; # XP4D_30    lct3_40
+NET "lct3_<41>"          LOC = "K21"  | IOSTANDARD = LVCMOS33; # XP4C_30    lct3_41
+NET "lct3_<42>"          LOC = "J26"  | IOSTANDARD = LVCMOS33; # XP4B_30    lct3_42
+NET "lct3_<43>"          LOC = "P22"  | IOSTANDARD = LVCMOS33; # XP4A_30    lct3_43
+NET "lct3_<44>"          LOC = "L19"  | IOSTANDARD = LVCMOS33; # XP4D_29    lct3_44
+NET "lct3_<45>"          LOC = "H26"  | IOSTANDARD = LVCMOS33; # XP4C_29    lct3_45
+NET "lct3_<46>"          LOC = "J25"  | IOSTANDARD = LVCMOS33; # XP4B_29    lct3_46
+NET "lct3_<47>"          LOC = "P21"  | IOSTANDARD = LVCMOS33; # XP4A_29    lct3_47
+NET "m_active_feb"       LOC = "E10"  | IOSTANDARD = LVCMOS33; # XP2D_15    actv_feb_fg
+NET "m_amu"              LOC = "C9"   | IOSTANDARD = LVCMOS33; # XP2B_15    f_amu
+NET "m_brcst_str1"       LOC = "D8"   | IOSTANDARD = LVCMOS33; # XP2D_12    brcst_str1
+NET "m_bxn<0>"           LOC = "D15"  | IOSTANDARD = LVCMOS33; # XP2D_18    bxn0
+NET "m_bxn<1>"           LOC = "C14"  | IOSTANDARD = LVCMOS33; # XP2C_18    bxn1
+NET "m_bxn<2>"           LOC = "B12"  | IOSTANDARD = LVCMOS33; # XP2B_18    bxn2
+NET "m_ccb_brcst<0>"     LOC = "D6"   | IOSTANDARD = LVCMOS33; # XP2D_11    ccb_brcst0
+NET "m_ccb_brcst<1>"     LOC = "C8"   | IOSTANDARD = LVCMOS33; # XP2C_11    ccb_brcst1
+NET "m_ccb_brcst<2>"     LOC = "C5"   | IOSTANDARD = LVCMOS33; # XP2B_11    ccb_brcst2
+NET "m_ccb_brcst<3>"     LOC = "A6"   | IOSTANDARD = LVCMOS33; # XP2A_11    ccb_brcst3
+NET "m_daq_data<0>"      LOC = "A13"  | IOSTANDARD = LVCMOS33; # XP2A_18    daq_d0
+NET "m_daq_data<1>"      LOC = "D13"  | IOSTANDARD = LVCMOS33; # XP2C_19    daq_d1
+NET "m_daq_data<2>"      LOC = "C13"  | IOSTANDARD = LVCMOS33; # XP2B_19    daq_d2
+NET "m_daq_data<3>"      LOC = "F10"  | IOSTANDARD = LVCMOS33; # XP2A_19    daq_d3
+NET "m_daq_data<4>"      LOC = "C15"  | IOSTANDARD = LVCMOS33; # XP2C_22    daq_d4
+NET "m_daq_data<5>"      LOC = "G14"  | IOSTANDARD = LVCMOS33; # XP2B_22    daq_d5
+NET "m_daq_data<6>"      LOC = "A15"  | IOSTANDARD = LVCMOS33; # XP2A_22    daq_d6
+NET "m_ddu_special"      LOC = "A16"  | IOSTANDARD = LVCMOS33; # XP2A_23    ddu_specl
+NET "m_dout_str"         LOC = "D10"  | IOSTANDARD = LVCMOS33; # XP2C_12    dout_str
+NET "m_ext_inject"       LOC = "B6"   | IOSTANDARD = LVCMOS33; # XP2B_12    ext_injct
+NET "m_key<0>"           LOC = "F13"  | IOSTANDARD = LVCMOS33; # XP2C_16    f_key0
+NET "m_key<1>"           LOC = "B10"  | IOSTANDARD = LVCMOS33; # XP2B_16    f_key1
+NET "m_key<2>"           LOC = "A11"  | IOSTANDARD = LVCMOS33; # XP2A_16    f_key2
+NET "m_key<3>"           LOC = "D12"  | IOSTANDARD = LVCMOS33; # XP2D_17    f_key3
+NET "m_key<4>"           LOC = "D14"  | IOSTANDARD = LVCMOS33; # XP2C_17    f_key4
+NET "m_key<5>"           LOC = "C11"  | IOSTANDARD = LVCMOS33; # XP2B_17    f_key5
+NET "m_key<6>"           LOC = "A12"  | IOSTANDARD = LVCMOS33; # XP2A_17    f_key6
+NET "m_l1_accept"        LOC = "A7"   | IOSTANDARD = LVCMOS33; # XP2A_12    l1_accpt
+NET "m_lct_special"      LOC = "B16"  | IOSTANDARD = LVCMOS33; # XP2D_23    lct_specl
+NET "m_quality<0>"       LOC = "A10"  | IOSTANDARD = LVCMOS33; # XP2A_15    f_qlty0
+NET "m_quality<1>"       LOC = "F11"  | IOSTANDARD = LVCMOS33; # XP2D_16    f_qlty1
+NET "m_reserved_in<0>"   LOC = "C7"   | IOSTANDARD = LVCMOS33; # XP2B_13    rsrvd_in0
+NET "m_reserved_in<1>"   LOC = "A8"   | IOSTANDARD = LVCMOS33; # XP2A_13    rsrvd_in1
+NET "m_reserved_out<0>"  LOC = "B8"   | IOSTANDARD = LVCMOS33; # XP2B_14    rsrvd_out0
+NET "m_reserved_out<1>"  LOC = "A9"   | IOSTANDARD = LVCMOS33; # XP2A_14    rsrvd_out1
+NET "m_seq_cmd<0>"       LOC = "E8"   | IOSTANDARD = LVCMOS33; # XP2D_13    seq_cmd0
+NET "m_seq_cmd<1>"       LOC = "C10"  | IOSTANDARD = LVCMOS33; # XP2C_13    seq_cmd1
+NET "m_seq_status<0>"    LOC = "J15"  | IOSTANDARD = LVCMOS33; # XP2C_23    seq_sts0
+NET "m_seq_status<1>"    LOC = "D16"  | IOSTANDARD = LVCMOS33; # XP2B_23    seq_sts1
+NET "m_valid"            LOC = "C12"  | IOSTANDARD = LVCMOS33; # XP2C_15    f_valid
+NET "mez_sn"             LOC = "B14"  | IOSTANDARD = LVCMOS33; # mez_signal mc_sn
+NET "ncs_dly<0>"         LOC = "AB10" | IOSTANDARD = LVCMOS33; # XP3A_17    /cs_dly0
+NET "ncs_dly<1>"         LOC = "AC11" | IOSTANDARD = LVCMOS33; # XP3A_18    /cs_dly1
+NET "ncs_dly<2>"         LOC = "W13"  | IOSTANDARD = LVCMOS33; # XP3A_23    /cs_dly2
+NET "ncs_dly<3>"         LOC = "V13"  | IOSTANDARD = LVCMOS33; # XP3A_24    /cs_dly3
+NET "nmx_oe"             LOC = "AD13" | IOSTANDARD = LVCMOS33; # XP3D_19    /mx_oe
+NET "no_l1a_red"         LOC = "F18"  | IOSTANDARD = LVCMOS33; # XP2D_29    no_l1a_red
+NET "nrs_dly"            LOC = "U7"   | IOSTANDARD = LVCMOS33; # XP3C_22    /rs_dly
+NET "pretrig_blu"        LOC = "E17"  | IOSTANDARD = LVCMOS33; # XP2B_29    pretrig_blu
+NET "sc_done"            LOC = "E20"  | IOSTANDARD = LVCMOS33; # XP2C_30    sl_cl_done
+NET "seltst_dly"         LOC = "Y13"  | IOSTANDARD = LVCMOS33; # XP3B_22    settst_dly
+NET "tck_ctrl"           LOC = "A5"   | IOSTANDARD = LVCMOS33; # XP2A_10    tck_ctrl
+NET "tck_grn"            LOC = "D20"  | IOSTANDARD = LVCMOS33; # XP2A_27    tck_grn
+NET "tdi_ctrl"           LOC = "E6"   | IOSTANDARD = LVCMOS33; # XP2D_10    tdi_ctrl
+NET "tdi_grn"            LOC = "H18"  | IOSTANDARD = LVCMOS33; # XP2D_28    tdi_grn
+NET "tdo_ctrl"           LOC = "D7"   | IOSTANDARD = LVCMOS33; # XP2C_10    tdo_ctrl
+NET "tdo_grn"            LOC = "F17"  | IOSTANDARD = LVCMOS33; # XP2C_27    tdo_grn
+NET "test_Pulse"         LOC = "C17"  | IOSTANDARD = LVCMOS33; # XP2D_24    tst_pls
+NET "tms_ctrl"           LOC = "C4"   | IOSTANDARD = LVCMOS33; # XP2B_10    tms_ctrl
+NET "tms_grn"            LOC = "D19"  | IOSTANDARD = LVCMOS33; # XP2B_27    tms_grn
+NET "tp_start_ext"       LOC = "H15"  | IOSTANDARD = LVCMOS33; # XP2C_24    tp_strt_ext
+NET "tp0_<0>"            LOC = "K1"   | IOSTANDARD = LVCMOS33; # XP1A_8     tp0_0
+NET "tp0_<1>"            LOC = "H1"   | IOSTANDARD = LVCMOS33; # XP1B_8     tp0_1
+NET "tp0_<2>"            LOC = "G2"   | IOSTANDARD = LVCMOS33; # XP1C_8     tp0_2
+NET "tp0_<3>"            LOC = "G1"   | IOSTANDARD = LVCMOS33; # XP1D_8     tp0_3
+NET "tp0_<4>"            LOC = "J3"   | IOSTANDARD = LVCMOS33; # XP1A_7     tp0_4
+NET "tp0_<5>"            LOC = "J2"   | IOSTANDARD = LVCMOS33; # XP1B_7     tp0_5
+NET "tp0_<6>"            LOC = "F3"   | IOSTANDARD = LVCMOS33; # XP1C_7     tp0_6
+NET "tp0_<7>"            LOC = "F1"   | IOSTANDARD = LVCMOS33; # XP1D_7     tp0_7
+NET "tp0_<8>"            LOC = "H5"   | IOSTANDARD = LVCMOS33; # XP1A_6     tp0_8
+NET "tp0_<9>"            LOC = "J1"   | IOSTANDARD = LVCMOS33; # XP1B_6     tp0_9
+NET "tp0_<10>"           LOC = "E3"   | IOSTANDARD = LVCMOS33; # XP1C_6     tp0_10
+NET "tp0_<11>"           LOC = "E1"   | IOSTANDARD = LVCMOS33; # XP1D_6     tp0_11
+NET "tp0_<12>"           LOC = "G4"   | IOSTANDARD = LVCMOS33; # XP1A_5     tp0_12
+NET "tp0_<13>"           LOC = "J5"   | IOSTANDARD = LVCMOS33; # XP1B_5     tp0_13
+NET "tp0_<14>"           LOC = "E2"   | IOSTANDARD = LVCMOS33; # XP1C_5     tp0_14
+NET "tp0_<15>"           LOC = "D1"   | IOSTANDARD = LVCMOS33; # XP1D_5     tp0_15
+NET "tp0_<16>"           LOC = "F5"   | IOSTANDARD = LVCMOS33; # XP1A_4     tp0_16
+NET "tp0_<17>"           LOC = "H3"   | IOSTANDARD = LVCMOS33; # XP1B_4     tp0_17
+NET "tp0_<18>"           LOC = "D3"   | IOSTANDARD = LVCMOS33; # XP1C_4     tp0_18
+NET "tp0_<19>"           LOC = "C1"   | IOSTANDARD = LVCMOS33; # XP1D_4     tp0_19
+NET "tp0_<20>"           LOC = "E4"   | IOSTANDARD = LVCMOS33; # XP1A_3     tp0_20
+NET "tp0_<21>"           LOC = "G3"   | IOSTANDARD = LVCMOS33; # XP1B_3     tp0_21
+NET "tp0_<22>"           LOC = "C2"   | IOSTANDARD = LVCMOS33; # XP1C_3     tp0_22
+NET "tp0_<23>"           LOC = "B1"   | IOSTANDARD = LVCMOS33; # XP1D_3     tp0_23
+NET "tp0_<24>"           LOC = "A2"   | IOSTANDARD = LVCMOS33; # XP2A_3     tp0_24
+NET "tp0_<25>"           LOC = "B2"   | IOSTANDARD = LVCMOS33; # XP2B_3     tp0_25
+NET "tp0_<26>"           LOC = "C3"   | IOSTANDARD = LVCMOS33; # XP2C_3     tp0_26
+NET "tp0_<27>"           LOC = "E5"   | IOSTANDARD = LVCMOS33; # XP2D_3     tp0_27
+NET "tp0_<28>"           LOC = "A4"   | IOSTANDARD = LVCMOS33; # XP2A_4     tp0_28
+NET "tp0_<29>"           LOC = "B4"   | IOSTANDARD = LVCMOS33; # XP2B_4     tp0_29
+NET "tp0_<30>"           LOC = "C6"   | IOSTANDARD = LVCMOS33; # XP2C_4     tp0_30
+NET "tp0_<31>"           LOC = "D5"   | IOSTANDARD = LVCMOS33; # XP2D_4     tp0_31
+NET "tp1_<0>"            LOC = "E26"  | IOSTANDARD = LVCMOS33; # XP4A_8     tp1_0
+NET "tp1_<1>"            LOC = "E24"  | IOSTANDARD = LVCMOS33; # XP4B_8     tp1_1
+NET "tp1_<2>"            LOC = "H24"  | IOSTANDARD = LVCMOS33; # XP4C_8     tp1_2
+NET "tp1_<3>"            LOC = "J23"  | IOSTANDARD = LVCMOS33; # XP4D_8     tp1_3
+NET "tp1_<4>"            LOC = "D26"  | IOSTANDARD = LVCMOS33; # XP4A_7     tp1_4
+NET "tp1_<5>"            LOC = "E25"  | IOSTANDARD = LVCMOS33; # XP4B_7     tp1_5
+NET "tp1_<6>"            LOC = "G25"  | IOSTANDARD = LVCMOS33; # XP4C_7     tp1_6
+NET "tp1_<7>"            LOC = "G24"  | IOSTANDARD = LVCMOS33; # XP4D_7     tp1_7
+NET "tp1_<8>"            LOC = "C26"  | IOSTANDARD = LVCMOS33; # XP4A_6     tp1_8
+NET "tp1_<9>"            LOC = "C24"  | IOSTANDARD = LVCMOS33; # XP4B_6     tp1_9
+NET "tp1_<10>"           LOC = "G21"  | IOSTANDARD = LVCMOS33; # XP4C_6     tp1_10
+NET "tp1_<11>"           LOC = "G22"  | IOSTANDARD = LVCMOS33; # XP4D_6     tp1_11
+NET "tp1_<12>"           LOC = "B26"  | IOSTANDARD = LVCMOS33; # XP4A_5     tp1_12
+NET "tp1_<13>"           LOC = "C25"  | IOSTANDARD = LVCMOS33; # XP4B_5     tp1_13
+NET "tp1_<14>"           LOC = "G20"  | IOSTANDARD = LVCMOS33; # XP4C_5     tp1_14
+NET "tp1_<15>"           LOC = "F22"  | IOSTANDARD = LVCMOS33; # XP4D_5     tp1_15
+NET "tp1_<16>"           LOC = "J20"  | IOSTANDARD = LVCMOS33; # XP4A_4     tp1_16
+NET "tp1_<17>"           LOC = "K19"  | IOSTANDARD = LVCMOS33; # XP4B_4     tp1_17
+NET "tp1_<18>"           LOC = "E23"  | IOSTANDARD = LVCMOS33; # XP4C_4     tp1_18
+NET "tp1_<19>"           LOC = "D24"  | IOSTANDARD = LVCMOS33; # XP4D_4     tp1_19
+NET "tp1_<20>"           LOC = "H16"  | IOSTANDARD = LVCMOS33; # XP4A_3     tp1_20
+NET "tp1_<21>"           LOC = "J24"  | IOSTANDARD = LVCMOS33; # XP4B_3     tp1_21
+NET "tp1_<22>"           LOC = "D22"  | IOSTANDARD = LVCMOS33; # XP4C_3     tp1_22
+NET "tp1_<23>"           LOC = "G23"  | IOSTANDARD = LVCMOS33; # XP4D_3     tp1_23
+NET "tp1_<24>"           LOC = "B25"  | IOSTANDARD = LVCMOS33; # XP2A_38    tp1_24
+NET "tp1_<25>"           LOC = "A23"  | IOSTANDARD = LVCMOS33; # XP2B_38    tp1_25
+NET "tp1_<26>"           LOC = "D23"  | IOSTANDARD = LVCMOS33; # XP2C_38    tp1_26
+NET "tp1_<27>"           LOC = "B24"  | IOSTANDARD = LVCMOS33; # XP2D_38    tp1_27
+NET "tp1_<28>"           LOC = "A25"  | IOSTANDARD = LVCMOS33; # XP2A_37    tp1_28
+NET "tp1_<29>"           LOC = "B23"  | IOSTANDARD = LVCMOS33; # XP2B_37    tp1_29
+NET "tp1_<31>"           LOC = "D21"  | IOSTANDARD = LVCMOS33; # XP2D_37    tp1_31
+NET "tp1_<30>"           LOC = "E19"  | IOSTANDARD = LVCMOS33; # XP2C_37    tp1_30
+NET "elink_n<2>"         LOC = "AF19" | IOSTANDARD = LVDS_33;  # mez_signal elink2_n
+NET "elink_n<8>"         LOC = "AF18" | IOSTANDARD = LVDS_33;  # mez_signal elink8_n
+NET "elink_n<13>"        LOC = "AF21" | IOSTANDARD = LVDS_33;  # mez_signal elink13_n
+NET "elink_p<2>"         LOC = "AE19" | IOSTANDARD = LVDS_33;  # mez_signal elink2_p
+NET "elink_p<8>"         LOC = "AD18" | IOSTANDARD = LVDS_33;  # mez_signal elink8_p
+NET "elink_p<13>"        LOC = "AE21" | IOSTANDARD = LVDS_33;  # mez_signal elink13_p
+NET "gbt_clk40_p<1>"     LOC = "AD14" | IOSTANDARD = LVDS_33;
+NET "gbt_clk40_n<1>"     LOC = "AF14" | IOSTANDARD = LVDS_33;
+NET "gbt_clk40_p<0>"     LOC = "v23" | IOSTANDARD = LVDS_33;
+NET "gbt_clk40_n<0>"     LOC = "w24" | IOSTANDARD = LVDS_33;
+
+
+# ------------------------------------------------------------------------
+# IOB Modifiers
+# ------------------------------------------------------------------------
+NET "clk80<*>"            SLEW=FAST | DRIVE=12;
+
+NET "m_reserved_out<*>"   SLEW=SLOW | DRIVE=12;
+NET "m_ext_inject"        SLEW=SLOW | DRIVE=12;
+NET "m_active_feb"        SLEW=SLOW | DRIVE=12;
+NET "m_valid"             SLEW=SLOW | DRIVE=12;
+NET "m_key<*>"            SLEW=SLOW | DRIVE=12;
+NET "m_quality<*>"        SLEW=SLOW | DRIVE=12;
+NET "m_amu"               SLEW=SLOW | DRIVE=12;
+NET "m_bxn<*>"            SLEW=SLOW | DRIVE=12;
+NET "m_l1_accept"         SLEW=SLOW | DRIVE=12;
+NET "m_daq_data<*>"       SLEW=SLOW | DRIVE=12;
+NET "m_lct_special"       SLEW=SLOW | DRIVE=12;
+NET "m_ddu_special"       SLEW=SLOW | DRIVE=12;
+NET "m_seq_status<*>"     SLEW=SLOW | DRIVE=12;
+
+#------------------------------------------------------------------------
+# Time Specs
+#------------------------------------------------------------------------
+NET "clock" TNM_NET = "clock";
+TIMESPEC "TS_clock" = PERIOD "clock" 24 ns HIGH 50 %;
+
+
+NET "m[1]" IOSTANDARD = LVCMOS33;
+NET "m[0]" IOSTANDARD = LVCMOS33;
+NET "gbt_tx_datavalid" IOSTANDARD = LVCMOS33;
+NET "gbt_txrdy" IOSTANDARD = LVCMOS33;
+NET "init_b" IOSTANDARD = LVCMOS33;
+NET "rdwr_b" IOSTANDARD = LVCMOS33;
