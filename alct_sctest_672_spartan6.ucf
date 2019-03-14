@@ -1,0 +1,821 @@
+#----------------------------------------------------------------------------------------------------------
+# ALCT384 UCF for Spartan6 mezzanine card
+#
+# 04/18/2012 Copy from tmb2005e_spartan6_11_04_2011.ucf
+# 05/01/2012 Add pullup to tp0_<30> and tp0_<31> for push button
+# 05/03/2012 Add dual purpose pins
+#
+#----------------------------------------------------------------------------------------------------------
+NET "*"					IOSTANDARD=LVTTL;
+#----------------------------------------------------------------------------------------------------------
+# Pin assigments
+#----------------------------------------------------------------------------------------------------------
+# Clock
+
+NET "clock_mez"			LOC = "D15";	# GCLK0 Pin XP2.D21
+NET "clock_en"          LOC = "AE29";    # XP2B_15    clock_en
+
+# ADB Multiplexer
+NET "clk80<0>"           LOC = "C15";     # XP3A_20    clk_out80
+NET "clk80<1>"           LOC = "W1";      # XP3B_20    clk_out80_1
+NET "clk40sh<0>"         LOC = "W5";      # XP3A_21    clk_out40sh
+NET "clk40sh<1>"         LOC = "W4";      # XP3B_21    clk_out40sh_1
+NET "nmx_oe"              LOC = "AK29";    # XP2A_10    /mx_oe
+
+# ADB Signal Inputs 80MHz
+NET "lct0_<0>"           LOC = "AH22";    # XP1A_11    lct0_0
+NET "lct0_<10>"          LOC = "AH20";    # XP1C_13    lct0_10
+NET "lct0_<11>"          LOC = "AD18";    # XP1D_13    lct0_11
+NET "lct0_<12>"          LOC = "AE18";    # XP1A_14    lct0_12
+NET "lct0_<13>"          LOC = "AA19";    # XP1B_14    lct0_13
+NET "lct0_<14>"          LOC = "AB19";    # XP1C_14    lct0_14
+NET "lct0_<15>"          LOC = "AF19";    # XP1D_14    lct0_15
+NET "lct0_<16>"          LOC = "AG19";    # XP1A_15    lct0_16
+NET "lct0_<17>"          LOC = "AG18";    # XP1B_15    lct0_17
+NET "lct0_<18>"          LOC = "AH18";    # XP1C_15    lct0_18
+NET "lct0_<19>"          LOC = "AB18";    # XP1D_15    lct0_19
+NET "lct0_<1>"           LOC = "AJ20";    # XP1B_11    lct0_1
+NET "lct0_<20>"          LOC = "AC18";    # XP1A_16    lct0_20
+NET "lct0_<21>"          LOC = "AF17";    # XP1B_16    lct0_21
+NET "lct0_<22>"          LOC = "AG17";    # XP1C_16    lct0_22
+NET "lct0_<23>"          LOC = "AD17";    # XP1D_16    lct0_23
+NET "lct0_<24>"          LOC = "AE17";    # XP1A_17    lct0_24
+NET "lct0_<25>"          LOC = "AD16";    # XP1B_17    lct0_25
+NET "lct0_<26>"          LOC = "AE16";    # XP1C_17    lct0_26
+NET "lct0_<27>"          LOC = "AJ16";    # XP1D_17    lct0_27
+NET "lct0_<28>"          LOC = "AK16";    # XP1A_18    lct0_28
+NET "lct0_<29>"          LOC = "AH17";    # XP1B_18    lct0_29
+NET "lct0_<2>"           LOC = "AK20";    # XP1C_11    lct0_2
+NET "lct0_<30>"          LOC = "AK17";    # XP1C_18    lct0_30
+NET "lct0_<31>"          LOC = "AB16";    # XP1D_18    lct0_31
+NET "lct0_<32>"          LOC = "AC16";    # XP1A_19    lct0_32
+NET "lct0_<33>"          LOC = "AF15";    # XP1B_19    lct0_33
+NET "lct0_<34>"          LOC = "AG15";    # XP1C_19    lct0_34
+NET "lct0_<35>"          LOC = "AG16";    # XP1D_19    lct0_35
+NET "lct0_<36>"          LOC = "AH16";    # XP1A_22    lct0_36
+NET "lct0_<37>"          LOC = "AD15";    # XP1B_22    lct0_37
+NET "lct0_<38>"          LOC = "AE15";    # XP1C_22    lct0_38
+NET "lct0_<39>"          LOC = "AA15";    # XP1D_22    lct0_39
+NET "lct0_<3>"           LOC = "AF21";    # XP1D_11    lct0_3
+NET "lct0_<40>"          LOC = "AB15";    # XP1A_23    lct0_40
+NET "lct0_<41>"          LOC = "AH15";    # XP1B_23    lct0_41
+NET "lct0_<42>"          LOC = "AK15";    # XP1C_23    lct0_42
+NET "lct0_<43>"          LOC = "AJ14";    # XP1D_23    lct0_43
+NET "lct0_<44>"          LOC = "AK14";    # XP1A_24    lct0_44
+NET "lct0_<45>"          LOC = "AB14";    # XP1B_24    lct0_45
+NET "lct0_<46>"          LOC = "AC14";    # XP1C_24    lct0_46
+NET "lct0_<47>"          LOC = "AH13";    # XP1D_24    lct0_47
+NET "lct0_<4>"           LOC = "AG21";    # XP1A_12    lct0_4
+NET "lct0_<5>"           LOC = "AB20";    # XP1B_12    lct0_5
+NET "lct0_<6>"           LOC = "AC20";    # XP1C_12    lct0_6
+NET "lct0_<7>"           LOC = "AD19";    # XP1D_12    lct0_7
+NET "lct0_<8>"           LOC = "AE19";    # XP1A_13    lct0_8
+NET "lct0_<9>"           LOC = "AG20";    # XP1B_13    lct0_9
+NET "lct1_<0>"           LOC = "AK13";    # XP1A_25    lct1_0
+NET "lct1_<10>"          LOC = "AE13";    # XP1C_27    lct1_10
+NET "lct1_<11>"          LOC = "AD12";    # XP1D_27    lct1_11
+NET "lct1_<12>"          LOC = "AE12";    # XP1A_28    lct1_12
+NET "lct1_<13>"          LOC = "AB12";    # XP1B_28    lct1_13
+NET "lct1_<14>"          LOC = "AC12";    # XP1C_28    lct1_14
+NET "lct1_<15>"          LOC = "AF11";    # XP1D_28    lct1_15
+NET "lct1_<16>"          LOC = "AG11";    # XP1A_29    lct1_16
+NET "lct1_<17>"          LOC = "AB11";    # XP1B_29    lct1_17
+NET "lct1_<18>"          LOC = "AD11";    # XP1C_29    lct1_18
+NET "lct1_<19>"          LOC = "AJ10";    # XP1D_29    lct1_19
+NET "lct1_<1>"           LOC = "AD14";    # XP1B_25    lct1_1
+NET "lct1_<20>"          LOC = "AK10";    # XP1A_30    lct1_20
+NET "lct1_<21>"          LOC = "AH9";     # XP1B_30    lct1_21
+NET "lct1_<22>"          LOC = "AK9";     # XP1C_30    lct1_22
+NET "lct1_<23>"          LOC = "AG10";    # XP1D_30    lct1_23
+NET "lct1_<24>"          LOC = "AH10";    # XP1A_31    lct1_24
+NET "lct1_<25>"          LOC = "AD10";    # XP1B_31    lct1_25
+NET "lct1_<26>"          LOC = "AE10";    # XP1C_31    lct1_26
+NET "lct1_<27>"          LOC = "AF9";     # XP1D_31    lct1_27
+NET "lct1_<28>"          LOC = "AG9";     # XP1A_32    lct1_28
+NET "lct1_<29>"          LOC = "AG8";     # XP1B_32    lct1_29
+NET "lct1_<2>"           LOC = "AE14";    # XP1C_25    lct1_2
+NET "lct1_<30>"          LOC = "AH8";     # XP1C_32    lct1_30
+NET "lct1_<31>"          LOC = "AF7";     # XP1D_32    lct1_31
+NET "lct1_<32>"          LOC = "AG7";     # XP1A_33    lct1_32
+NET "lct1_<33>"          LOC = "AD9";     # XP1B_33    lct1_33
+NET "lct1_<34>"          LOC = "AE9";     # XP1C_33    lct1_34
+NET "lct1_<35>"          LOC = "AD8";     # XP1D_33    lct1_35
+NET "lct1_<36>"          LOC = "AE8";     # XP1A_34    lct1_36
+NET "lct1_<37>"          LOC = "AG6";     # XP1B_34    lct1_37
+NET "lct1_<38>"          LOC = "AH6";     # XP1C_34    lct1_38
+NET "lct1_<39>"          LOC = "AH7";     # XP1D_34    lct1_39
+NET "lct1_<3>"           LOC = "AF13";    # XP1D_25    lct1_3
+NET "lct1_<40>"          LOC = "AK7";     # XP1A_35    lct1_40
+NET "lct1_<41>"          LOC = "AA10";    # XP1B_35    lct1_41
+NET "lct1_<42>"          LOC = "AA9";     # XP1C_35    lct1_42
+NET "lct1_<43>"          LOC = "AD7";     # XP1D_35    lct1_43
+NET "lct1_<44>"          LOC = "AE7";     # XP1A_36    lct1_44
+NET "lct1_<45>"          LOC = "Y9";      # XP1B_36    lct1_45
+NET "lct1_<46>"          LOC = "Y8";      # XP1C_36    lct1_46
+NET "lct1_<47>"          LOC = "AE6";     # XP1D_36    lct1_47
+NET "lct1_<4>"           LOC = "AG13";    # XP1A_26    lct1_4
+NET "lct1_<5>"           LOC = "AG14";    # XP1B_26    lct1_5
+NET "lct1_<6>"           LOC = "AH14";    # XP1C_26    lct1_6
+NET "lct1_<7>"           LOC = "AG12";    # XP1D_26    lct1_7
+NET "lct1_<8>"           LOC = "AH12";    # XP1A_27    lct1_8
+NET "lct1_<9>"           LOC = "AD13";    # XP1B_27    lct1_9
+NET "lct2_<0>"           LOC = "AF6";     # XP1A_37    lct2_0
+NET "lct2_<10>"          LOC = "AD6";     # XP3C_3     lct2_10
+NET "lct2_<11>"          LOC = "AH5";     # XP3D_3     lct2_11
+NET "lct2_<12>"          LOC = "AK5";     # XP3A_4     lct2_12
+NET "lct2_<13>"          LOC = "W10";     # XP3B_4     lct2_13
+NET "lct2_<14>"          LOC = "W9";      # XP3C_4     lct2_14
+NET "lct2_<15>"          LOC = "AB7";     # XP3D_4     lct2_15
+NET "lct2_<16>"          LOC = "AB6";     # XP3A_5     lct2_16
+NET "lct2_<17>"          LOC = "W7";      # XP3B_5     lct2_17
+NET "lct2_<18>"          LOC = "W6";      # XP3C_5     lct2_18
+NET "lct2_<19>"          LOC = "AJ4";     # XP3D_5     lct2_19
+NET "lct2_<1>"           LOC = "AA12";    # XP1B_37    lct2_1
+NET "lct2_<20>"          LOC = "AK4";     # XP3A_6     lct2_20
+NET "lct2_<21>"          LOC = "T9";      # XP3B_6     lct2_21
+NET "lct2_<22>"          LOC = "T8";      # XP3C_6     lct2_22
+NET "lct2_<23>"          LOC = "AH3";     # XP3D_6     lct2_23
+NET "lct2_<24>"          LOC = "AK3";     # XP3A_7     lct2_24
+NET "lct2_<25>"          LOC = "Y7";      # XP3B_7     lct2_25
+NET "lct2_<26>"          LOC = "Y6";      # XP3C_7     lct2_26
+NET "lct2_<27>"          LOC = "AJ2";     # XP3D_7     lct2_27
+NET "lct2_<28>"          LOC = "AK2";     # XP3A_8     lct2_28
+NET "lct2_<29>"          LOC = "AE4";     # XP3B_8     lct2_29
+NET "lct2_<2>"           LOC = "AA11";    # XP1C_37    lct2_2
+NET "lct2_<30>"          LOC = "AF4";     # XP3C_8     lct2_30
+NET "lct2_<31>"          LOC = "AF3";     # XP3D_8     lct2_31
+NET "lct2_<32>"          LOC = "AG3";     # XP3A_9     lct2_32
+NET "lct2_<33>"          LOC = "V8";      # XP3B_9     lct2_33
+NET "lct2_<34>"          LOC = "V7";      # XP3C_9     lct2_34
+NET "lct2_<35>"          LOC = "AH1";     # XP3D_9     lct2_35
+NET "lct2_<36>"          LOC = "AJ1";     # XP3A_10    lct2_36
+NET "lct2_<37>"          LOC = "V10";     # XP3B_10    lct2_37
+NET "lct2_<38>"          LOC = "V9";      # XP3C_10    lct2_38
+NET "lct2_<39>"          LOC = "AG4";     # XP3D_10    lct2_39
+NET "lct2_<3>"           LOC = "AE5";     # XP1D_37    lct2_3
+NET "lct2_<40>"          LOC = "AH4";     # XP3A_11    lct2_40
+NET "lct2_<41>"          LOC = "N10";     # XP3B_11    lct2_41
+NET "lct2_<42>"          LOC = "N9";      # XP3C_11    lct2_42
+NET "lct2_<43>"          LOC = "AF2";     # XP3D_11    lct2_43
+NET "lct2_<44>"          LOC = "AH2";     # XP3A_12    lct2_44
+NET "lct2_<45>"          LOC = "R7";      # XP3B_12    lct2_45
+NET "lct2_<46>"          LOC = "R6";      # XP3C_12    lct2_46
+NET "lct2_<47>"          LOC = "AF1";     # XP3D_12    lct2_47
+NET "lct2_<4>"           LOC = "AG5";     # XP1A_38    lct2_4
+NET "lct2_<5>"           LOC = "T7";      # XP1B_38    lct2_5
+NET "lct2_<6>"           LOC = "T6";      # XP1C_38    lct2_6
+NET "lct2_<7>"           LOC = "AA7";     # XP1D_38    lct2_7
+NET "lct2_<8>"           LOC = "AA6";     # XP3A_3     lct2_8
+NET "lct2_<9>"           LOC = "AC6";     # XP3B_3     lct2_9
+NET "lct3_<0>"           LOC = "AG1";     # XP3A_13    lct3_0
+NET "lct3_<10>"          LOC = "AD3";     # XP3C_15    lct3_10
+NET "lct3_<11>"          LOC = "AB4";     # XP3D_15    lct3_11
+NET "lct3_<12>"          LOC = "AB3";     # XP3A_16    lct3_12
+NET "lct3_<13>"          LOC = "AD2";     # XP3B_16    lct3_13
+NET "lct3_<14>"          LOC = "AD1";     # XP3C_16    lct3_14
+NET "lct3_<15>"          LOC = "AC3";     # XP3D_16    lct3_15
+NET "lct3_<16>"          LOC = "AC1";     # XP3A_17    lct3_16
+NET "lct3_<17>"          LOC = "Y4";      # XP3B_17    lct3_17
+NET "lct3_<18>"          LOC = "Y3";      # XP3C_17    lct3_18
+NET "lct3_<19>"          LOC = "Y2";      # XP3D_17    lct3_19
+NET "lct3_<1>"           LOC = "U7";      # XP3B_13    lct3_1
+NET "lct3_<20>"          LOC = "Y1";      # XP3A_18    lct3_20
+NET "lct3_<21>"          LOC = "AA5";     # XP3B_18    lct3_21
+NET "lct3_<22>"          LOC = "AA4";     # XP3C_18    lct3_22
+NET "lct3_<23>"          LOC = "W3";      # XP3D_18    lct3_23
+NET "lct3_<24>"          LOC = "V4";      # XP3A_23    lct3_24
+NET "lct3_<25>"          LOC = "V3";      # XP3B_23    lct3_25
+NET "lct3_<26>"          LOC = "AK18";    # XP3C_23    lct3_26
+NET "lct3_<27>"          LOC = "V2";      # XP3D_23    lct3_27
+NET "lct3_<28>"          LOC = "V1";      # XP3A_24    lct3_28
+NET "lct3_<29>"          LOC = "U5";      # XP3B_24    lct3_29
+NET "lct3_<2>"           LOC = "U6";      # XP3C_13    lct3_2
+NET "lct3_<30>"          LOC = "U4";      # XP3C_24    lct3_30
+NET "lct3_<31>"          LOC = "U3";      # XP3D_24    lct3_31
+NET "lct3_<32>"          LOC = "U1";      # XP3A_25    lct3_32
+NET "lct3_<33>"          LOC = "T4";      # XP3B_25    lct3_33
+NET "lct3_<34>"          LOC = "T3";      # XP3C_25    lct3_34
+NET "lct3_<35>"          LOC = "T2";      # XP3D_25    lct3_35
+NET "lct3_<36>"          LOC = "T1";      # XP3A_26    lct3_36
+NET "lct3_<37>"          LOC = "R5";      # XP3B_26    lct3_37
+NET "lct3_<38>"          LOC = "R4";      # XP3C_26    lct3_38
+NET "lct3_<39>"          LOC = "R3";      # XP3D_26    lct3_39
+NET "lct3_<3>"           LOC = "AE3";     # XP3D_13    lct3_3
+NET "lct3_<40>"          LOC = "R1";      # XP3A_27    lct3_40
+NET "lct3_<41>"          LOC = "P4";      # XP3B_27    lct3_41
+NET "lct3_<42>"          LOC = "P3";      # XP3C_27    lct3_42
+NET "lct3_<43>"          LOC = "N5";      # XP3D_27    lct3_43
+NET "lct3_<44>"          LOC = "N4";      # XP3A_28    lct3_44
+NET "lct3_<45>"          LOC = "P2";      # XP3B_28    lct3_45
+NET "lct3_<46>"          LOC = "P1";      # XP3C_28    lct3_46
+NET "lct3_<47>"          LOC = "N3";      # XP3D_28    lct3_47
+NET "lct3_<4>"           LOC = "AE1";     # XP3A_14    lct3_4
+NET "lct3_<5>"           LOC = "N8";      # XP3B_14    lct3_5
+NET "lct3_<6>"           LOC = "N7";      # XP3C_14    lct3_6
+NET "lct3_<7>"           LOC = "AC5";     # XP3D_14    lct3_7
+NET "lct3_<8>"           LOC = "AC4";     # XP3A_15    lct3_8
+NET "lct3_<9>"           LOC = "AD4";     # XP3B_15    lct3_9
+NET "lct4_<0>"           LOC = "N1";      # XP3A_29    lct4_0
+NET "lct4_<10>"          LOC = "L1";      # XP3C_31    lct4_10
+NET "lct4_<11>"          LOC = "K2";      # XP3D_31    lct4_11
+NET "lct4_<12>"          LOC = "K1";      # XP3A_32    lct4_12
+NET "lct4_<13>"          LOC = "L5";      # XP3B_32    lct4_13
+NET "lct4_<14>"          LOC = "L4";      # XP3C_32    lct4_14
+NET "lct4_<15>"          LOC = "M4";      # XP3D_32    lct4_15
+NET "lct4_<16>"          LOC = "M3";      # XP3A_33    lct4_16
+NET "lct4_<17>"          LOC = "H4";      # XP3B_33    lct4_17
+NET "lct4_<18>"          LOC = "H3";      # XP3C_33    lct4_18
+NET "lct4_<19>"          LOC = "J3";      # XP3D_33    lct4_19
+NET "lct4_<1>"           LOC = "P7";      # XP3B_29    lct4_1
+NET "lct4_<20>"          LOC = "J1";      # XP3A_34    lct4_20
+NET "lct4_<21>"          LOC = "J5";      # XP3B_34    lct4_21
+NET "lct4_<22>"          LOC = "J4";      # XP3C_34    lct4_22
+NET "lct4_<23>"          LOC = "H2";      # XP3D_34    lct4_23
+NET "lct4_<24>"          LOC = "H1";      # XP3A_35    lct4_24
+NET "lct4_<25>"          LOC = "G3";      # XP3B_35    lct4_25
+NET "lct4_<26>"          LOC = "G1";      # XP3C_35    lct4_26
+NET "lct4_<27>"          LOC = "K4";      # XP3D_35    lct4_27
+NET "lct4_<28>"          LOC = "K3";      # XP3A_36    lct4_28
+NET "lct4_<29>"          LOC = "C1";      # XP3B_36    lct4_29
+NET "lct4_<2>"           LOC = "P6";      # XP3C_29    lct4_2
+NET "lct4_<30>"          LOC = "B1";      # XP3C_36    lct4_30
+NET "lct4_<31>"          LOC = "F2";      # XP3D_36    lct4_31
+NET "lct4_<32>"          LOC = "F1";      # XP3A_37    lct4_32
+NET "lct4_<33>"          LOC = "E5";      # XP3B_37    lct4_33
+NET "lct4_<34>"          LOC = "E4";      # XP3C_37    lct4_34
+NET "lct4_<35>"          LOC = "E3";      # XP3D_37    lct4_35
+NET "lct4_<36>"          LOC = "E1";      # XP3A_38    lct4_36
+NET "lct4_<37>"          LOC = "D4";      # XP3B_38    lct4_37
+NET "lct4_<38>"          LOC = "D3";      # XP3C_38    lct4_38
+NET "lct4_<39>"          LOC = "D2";      # XP3D_38    lct4_39
+NET "lct4_<3>"           LOC = "M7";      # XP3D_29    lct4_3
+NET "lct4_<40>"          LOC = "F4";      # XP4A_38    lct4_40
+NET "lct4_<41>"          LOC = "A3";      # XP4B_38    lct4_41
+NET "lct4_<42>"          LOC = "B3";      # XP4C_38    lct4_42
+NET "lct4_<43>"          LOC = "D1";      # XP4D_38    lct4_43
+NET "lct4_<44>"          LOC = "B2";      # XP4A_37    lct4_44
+NET "lct4_<45>"          LOC = "C5";      # XP4B_37    lct4_45
+NET "lct4_<46>"          LOC = "D5";      # XP4C_37    lct4_46
+NET "lct4_<47>"          LOC = "F3";      # XP4D_37    lct4_47
+NET "lct4_<4>"           LOC = "M6";      # XP3A_30    lct4_4
+NET "lct4_<5>"           LOC = "L7";      # XP3B_30    lct4_5
+NET "lct4_<6>"           LOC = "L6";      # XP3C_30    lct4_6
+NET "lct4_<7>"           LOC = "M2";      # XP3D_30    lct4_7
+NET "lct4_<8>"           LOC = "M1";      # XP3A_31    lct4_8
+NET "lct4_<9>"           LOC = "L3";      # XP3B_31    lct4_9
+NET "lct5_<0>"           LOC = "G5";      # XP4A_36    lct5_0
+NET "lct5_<10>"          LOC = "G7";      # XP4C_34    lct5_10
+NET "lct5_<11>"          LOC = "H6";      # XP4D_34    lct5_11
+NET "lct5_<12>"          LOC = "E6";      # XP4A_33    lct5_12
+NET "lct5_<13>"          LOC = "F8";      # XP4B_33    lct5_13
+NET "lct5_<14>"          LOC = "G8";      # XP4C_33    lct5_14
+NET "lct5_<15>"          LOC = "F6";      # XP4D_33    lct5_15
+NET "lct5_<16>"          LOC = "J10";     # XP4A_32    lct5_16
+NET "lct5_<17>"          LOC = "D8";      # XP4B_32    lct5_17
+NET "lct5_<18>"          LOC = "E8";      # XP4C_32    lct5_18
+NET "lct5_<19>"          LOC = "D6";      # XP4D_32    lct5_19
+NET "lct5_<1>"           LOC = "A4";      # XP4B_36    lct5_1
+NET "lct5_<20>"          LOC = "B7";      # XP4A_31    lct5_20
+NET "lct5_<21>"          LOC = "A6";      # XP4B_31    lct5_21
+NET "lct5_<22>"          LOC = "C6";      # XP4C_31    lct5_22
+NET "lct5_<23>"          LOC = "G10";     # XP4D_31    lct5_23
+NET "lct5_<24>"          LOC = "J11";     # XP4A_30    lct5_24
+NET "lct5_<25>"          LOC = "C7";      # XP4B_30    lct5_25
+NET "lct5_<26>"          LOC = "D7";      # XP4C_30    lct5_26
+NET "lct5_<27>"          LOC = "A7";      # XP4D_30    lct5_27
+NET "lct5_<28>"          LOC = "C8";      # XP4A_29    lct5_28
+NET "lct5_<29>"          LOC = "D10";     # XP4B_29    lct5_29
+NET "lct5_<2>"           LOC = "C4";      # XP4C_36    lct5_2
+NET "lct5_<30>"          LOC = "E10";     # XP4C_29    lct5_30
+NET "lct5_<31>"          LOC = "H11";     # XP4D_29    lct5_31
+NET "lct5_<32>"          LOC = "K12";     # XP4A_28    lct5_32
+NET "lct5_<33>"          LOC = "C9";      # XP4B_28    lct5_33
+NET "lct5_<34>"          LOC = "D9";      # XP4C_28    lct5_34
+NET "lct5_<35>"          LOC = "A8";      # XP4D_28    lct5_35
+NET "lct5_<36>"          LOC = "B9";      # XP4A_27    lct5_36
+NET "lct5_<37>"          LOC = "F11";     # XP4B_27    lct5_37
+NET "lct5_<38>"          LOC = "G11";     # XP4C_27    lct5_38
+NET "lct5_<39>"          LOC = "J12";     # XP4D_27    lct5_39
+NET "lct5_<3>"           LOC = "A2";      # XP4D_36    lct5_3
+NET "lct5_<40>"          LOC = "D11";     # XP4A_26    lct5_40
+NET "lct5_<41>"          LOC = "A10";     # XP4B_26    lct5_41
+NET "lct5_<42>"          LOC = "C10";     # XP4C_26    lct5_42
+NET "lct5_<43>"          LOC = "A9";      # XP4D_26    lct5_43
+NET "lct5_<44>"          LOC = "E12";     # XP4A_25    lct5_44
+NET "lct5_<45>"          LOC = "F12";     # XP4B_25    lct5_45
+NET "lct5_<46>"          LOC = "G12";     # XP4C_25    lct5_46
+NET "lct5_<47>"          LOC = "C11";     # XP4D_25    lct5_47
+NET "lct5_<4>"           LOC = "J6";      # XP4A_35    lct5_4
+NET "lct5_<5>"           LOC = "A5";      # XP4B_35    lct5_5
+NET "lct5_<6>"           LOC = "B5";      # XP4C_35    lct5_6
+NET "lct5_<7>"           LOC = "G4";      # XP4D_35    lct5_7
+NET "lct5_<8>"           LOC = "G6";      # XP4A_34    lct5_8
+NET "lct5_<9>"           LOC = "F7";      # XP4B_34    lct5_9
+NET "lct6_<0>"           LOC = "C12";     # XP4A_24    lct6_0
+NET "lct6_<10>"          LOC = "G13";     # XP4C_22    lct6_10
+NET "lct6_<11>"          LOC = "H13";     # XP4D_22    lct6_11
+NET "lct6_<12>"          LOC = "E14";     # XP4A_19    lct6_12
+NET "lct6_<13>"          LOC = "F14";     # XP4B_19    lct6_13
+NET "lct6_<14>"          LOC = "G14";     # XP4C_19    lct6_14
+NET "lct6_<15>"          LOC = "J14";     # XP4D_19    lct6_15
+NET "lct6_<16>"          LOC = "C14";     # XP4A_18    lct6_16
+NET "lct6_<17>"          LOC = "A13";     # XP4B_18    lct6_17
+NET "lct6_<18>"          LOC = "B13";     # XP4C_18    lct6_18
+NET "lct6_<19>"          LOC = "D14";     # XP4D_18    lct6_19
+NET "lct6_<1>"           LOC = "A11";     # XP4B_24    lct6_1
+NET "lct6_<20>"          LOC = "G15";     # XP4A_17    lct6_20
+NET "lct6_<21>"          LOC = "H15";     # XP4B_17    lct6_21
+NET "lct6_<22>"          LOC = "J15";     # XP4C_17    lct6_22
+NET "lct6_<23>"          LOC = "A14";     # XP4D_17    lct6_23
+NET "lct6_<24>"          LOC = "A18";     # XP4A_16    lct6_24
+NET "lct6_<25>"          LOC = "C18";     # XP4B_16    lct6_25
+NET "lct6_<26>"          LOC = "A16";     # XP4C_16    lct6_26
+NET "lct6_<27>"          LOC = "F15";     # XP4D_16    lct6_27
+NET "lct6_<28>"          LOC = "D16";     # XP4A_15    lct6_28
+NET "lct6_<29>"          LOC = "E16";     # XP4B_15    lct6_29
+NET "lct6_<2>"           LOC = "B11";     # XP4C_24    lct6_2
+NET "lct6_<30>"          LOC = "A17";     # XP4C_15    lct6_30
+NET "lct6_<31>"          LOC = "B17";     # XP4D_15    lct6_31
+NET "lct6_<32>"          LOC = "C17";     # XP4A_14    lct6_32
+NET "lct6_<33>"          LOC = "D17";     # XP4B_14    lct6_33
+NET "lct6_<34>"          LOC = "F16";     # XP4C_14    lct6_34
+NET "lct6_<35>"          LOC = "G16";     # XP4D_14    lct6_35
+NET "lct6_<36>"          LOC = "H17";     # XP4A_13    lct6_36
+NET "lct6_<37>"          LOC = "J17";     # XP4B_13    lct6_37
+NET "lct6_<38>"          LOC = "F17";     # XP4C_13    lct6_38
+NET "lct6_<39>"          LOC = "G17";     # XP4D_13    lct6_39
+NET "lct6_<3>"           LOC = "D12";     # XP4D_24    lct6_3
+NET "lct6_<40>"          LOC = "D18";     # XP4A_12    lct6_40
+NET "lct6_<41>"          LOC = "E18";     # XP4B_12    lct6_41
+NET "lct6_<42>"          LOC = "A19";     # XP4C_12    lct6_42
+NET "lct6_<43>"          LOC = "B19";     # XP4D_12    lct6_43
+NET "lct6_<44>"          LOC = "D19";     # XP4A_11    lct6_44
+NET "lct6_<45>"          LOC = "C20";     # XP4B_11    lct6_45
+NET "lct6_<46>"          LOC = "F18";     # XP4C_11    lct6_46
+NET "lct6_<47>"          LOC = "G18";     # XP4D_11    lct6_47
+NET "lct6_<4>"           LOC = "J13";     # XP4A_23    lct6_4
+NET "lct6_<5>"           LOC = "C13";     # XP4B_23    lct6_5
+NET "lct6_<6>"           LOC = "D13";     # XP4C_23    lct6_6
+NET "lct6_<7>"           LOC = "A12";     # XP4D_23    lct6_7
+NET "lct6_<8>"           LOC = "K14";     # XP4A_22    lct6_8
+NET "lct6_<9>"           LOC = "F13";     # XP4B_22    lct6_9
+
+# Trigger Path
+NET "m_ext_inject"      LOC = "R22";     # XP2C_13    ext_injct
+NET "m_active_feb"  LOC = "AC28";    # XP2A_16    actv_feb_fg
+NET "m_valid"              LOC = "AC27";    # XP2B_16    f_valid
+
+NET "m_key<0>"            LOC = "W30";     # XP2B_17    f_key0
+NET "m_key<1>"            LOC = "W29";     # XP2C_17    f_key1
+NET "m_key<2>"            LOC = "AB30";    # XP2D_17    f_key2
+NET "m_key<3>"            LOC = "AB28";    # XP2A_18    f_key3
+NET "m_key<4>"            LOC = "W28";     # XP2B_18    f_key4
+NET "m_key<5>"            LOC = "W27";     # XP2C_18    f_key5
+NET "m_key<6>"            LOC = "V27";     # XP2D_18    f_key6
+
+NET "m_quality<0>"         LOC = "AD28";    # XP2D_16    f_qlty0
+NET "m_quality<1>"         LOC = "Y27";     # XP2A_17    f_qlty1
+NET "m_amu"                LOC = "AD30";    # XP2C_16    f_amu
+
+NET "m_bxn<0>"      LOC = "V26";     # XP2A_19    bxn0
+NET "m_bxn<1>"      LOC = "V30";     # XP2B_19    bxn1
+NET "m_bxn<2>"      LOC = "V28";     # XP2C_19    bxn2
+
+# DAQ Path
+NET "m_l1_accept"        LOC = "R21";     # XP2D_13    l1_accpt
+
+NET "m_daq_data<0>"         LOC = "M24";     # XP2A_22    daq_d0
+NET "m_daq_data<1>"         LOC = "M23";     # XP2B_22    daq_d1
+NET "m_daq_data<2>"         LOC = "L25";     # XP2C_22    daq_d2
+NET "m_daq_data<3>"         LOC = "L24";     # XP2A_23    daq_d3
+NET "m_daq_data<4>"         LOC = "N25";     # XP2B_23    daq_d4
+NET "m_daq_data<5>"         LOC = "N24";     # XP2C_23    daq_d5
+NET "m_daq_data<6>"         LOC = "M30";     # XP2D_23    daq_d6
+NET "m_lct_special"    LOC = "M27";     # XP2A_24    lct_specl
+NET "m_ddu_special"     LOC = "K28";     # XP2D_24    ddu_specl
+
+# CCB IOs
+NET "m_ccb_brcst<0>"      LOC = "AG30";    # XP2A_12    ccb_brcst0
+NET "m_ccb_brcst<1>"      LOC = "AG29";    # XP2B_12    ccb_brcst1
+NET "m_ccb_brcst<2>"      LOC = "P23";     # XP2C_12    ccb_brcst2
+NET "m_ccb_brcst<3>"      LOC = "P22";     # XP2D_12    ccb_brcst3
+NET "m_brcst_str1"      LOC = "AF30";    # XP2A_13    brcst_str1
+NET "m_dout_str"           LOC = "AF28";    # XP2B_13    dout_str
+
+# LEDs low enables
+NET "jstate0_grn"          LOC = "L30";     # XP2A_25    jstate0_grn
+NET "jstate1_grn"          LOC = "L28";     # XP2B_25    jstate1_grn
+NET "jstate2_grn"          LOC = "L27";     # XP2C_25    jstate2_grn
+NET "jstate3_grn"          LOC = "H30";     # XP2D_25    jstate3_grn
+
+NET "feb0_grn"           LOC = "H28";     # XP2A_26    feb0_grn
+NET "feb1_grn"           LOC = "G30";     # XP2B_26    feb1_grn
+NET "feb2_grn"           LOC = "G29";     # XP2C_26    feb2_grn
+NET "feb3_grn"           LOC = "J30";     # XP2D_26    feb3_grn
+NET "feb4_grn"           LOC = "J29";     # XP2A_27    feb4_grn
+NET "feb5_grn"           LOC = "F30";     # XP2B_27    feb5_grn
+NET "feb6_grn"           LOC = "F28";     # XP2C_27    feb6_grn
+
+NET "tck_grn"            LOC = "J28";     # XP2B_28    tck_grn
+NET "tdi_grn"            LOC = "G27";     # XP2A_28    tdi_grn
+NET "tdo_grn"            LOC = "G28";     # XP2D_27    tdo_grn
+NET "tms_grn"            LOC = "J27";     # XP2C_28    tms_grn
+
+#NET "amu_grn"			LOC = "J28";	#I/O_413 Pin XP2.B28
+
+# Test points
+
+NET "tp0_<0>"             LOC = "AC21";    # XP1A_8     tp0_0
+NET "tp0_<10>"            LOC = "AG24";    # XP1C_6     tp0_10
+NET "tp0_<11>"            LOC = "AH24";    # XP1D_6     tp0_11
+NET "tp0_<12>"            LOC = "AG26";    # XP1A_5     tp0_12
+NET "tp0_<13>"            LOC = "AH26";    # XP1B_5     tp0_13
+NET "tp0_<14>"            LOC = "AD24";    # XP1C_5     tp0_14
+NET "tp0_<15>"            LOC = "AE24";    # XP1D_5     tp0_15
+NET "tp0_<1>"             LOC = "AD21";    # XP1B_8     tp0_1
+NET "tp0_<2>"             LOC = "AF23";    # XP1C_8     tp0_2
+NET "tp0_<3>"             LOC = "AG23";    # XP1D_8     tp0_3
+NET "tp0_<4>"             LOC = "AD23";    # XP1A_7     tp0_4
+NET "tp0_<5>"             LOC = "AE23";    # XP1B_7     tp0_5
+NET "tp0_<6>"             LOC = "AD22";    # XP1C_7     tp0_6
+NET "tp0_<7>"             LOC = "AE22";    # XP1D_7     tp0_7
+NET "tp0_<8>"             LOC = "AF25";    # XP1A_6     tp0_8
+NET "tp0_<9>"             LOC = "AG25";    # XP1B_6     tp0_9
+NET "tp1_<0>"             LOC = "D21";     # XP4A_8     tp1_0
+NET "tp1_<10>"            LOC = "J20";     # XP4C_6     tp1_10
+NET "tp1_<11>"            LOC = "A23";     # XP4D_6     tp1_11
+NET "tp1_<12>"            LOC = "G22";     # XP4A_5     tp1_12
+NET "tp1_<13>"            LOC = "C23";     # XP4B_5     tp1_13
+NET "tp1_<14>"            LOC = "D23";     # XP4C_5     tp1_14
+NET "tp1_<15>"            LOC = "F21";     # XP4D_5     tp1_15
+NET "tp1_<16>"            LOC = "G23";     # XP4A_4     tp1_16
+NET "tp1_<17>"            LOC = "D24";     # XP4B_4     tp1_17
+NET "tp1_<18>"            LOC = "E24";     # XP4C_4     tp1_18
+NET "tp1_<19>"            LOC = "F22";     # XP4D_4     tp1_19
+NET "tp1_<1>"             LOC = "A22";     # XP4B_8     tp1_1
+NET "tp1_<20>"            LOC = "C24";     # XP4A_3     tp1_20
+NET "tp1_<21>"            LOC = "A25";     # XP4B_3     tp1_21
+NET "tp1_<22>"            LOC = "B25";     # XP4C_3     tp1_22
+NET "tp1_<23>"            LOC = "F23";     # XP4D_3     tp1_23
+NET "tp1_<24>"            LOC = "A29";     # XP2A_38    tp1_24
+NET "tp1_<25>"            LOC = "A28";     # XP2B_38    tp1_25
+NET "tp1_<26>"            LOC = "J21";     # XP2C_38    tp1_26
+NET "tp1_<27>"            LOC = "A24";     # XP2D_38    tp1_27
+NET "tp1_<28>"            LOC = "B30";     # XP2A_37    tp1_28
+NET "tp1_<29>"            LOC = "B29";     # XP2B_37    tp1_29
+NET "tp1_<2>"             LOC = "C22";     # XP4C_8     tp1_2
+NET "tp1_<30>"            LOC = "A26";     # XP2C_37    tp1_30
+NET "tp1_<31>"            LOC = "C26";     # XP2D_37    tp1_31
+NET "tp1_<3>"             LOC = "D20";     # XP4D_8     tp1_3
+NET "tp1_<4>"             LOC = "B23";     # XP4A_7     tp1_4
+NET "tp1_<5>"             LOC = "D22";     # XP4B_7     tp1_5
+NET "tp1_<6>"             LOC = "E22";     # XP4C_7     tp1_6
+NET "tp1_<7>"             LOC = "C21";     # XP4D_7     tp1_7
+NET "tp1_<8>"             LOC = "G21";     # XP4A_6     tp1_8
+NET "tp1_<9>"             LOC = "G20";     # XP4B_6     tp1_9
+
+# User JTAG
+NET "tck_ctrl"               LOC = "P24";     # XP2D_11    tck_ctrl
+NET "tdi_ctrl"               LOC = "AJ30";    # XP2A_11    tdi_ctrl
+NET "tdo_ctrl"               LOC = "AH30";    # XP2B_11    tdo_ctrl
+NET "tms_ctrl"               LOC = "P25";     # XP2C_11    tms_ctrl
+
+# Delay ASICs
+NET "clk_dly"            LOC = "AA1";     # XP3D_19    clk_dly
+NET "din_dly"            LOC = "AK19";    # XP3C_19    din_dly
+NET "settst_dly"        LOC = "AH19";    # XP3C_22    settst_dly
+
+NET "nrs_dly"             LOC = "AB1";     # XP3D_22    /rs_dly
+
+NET "ncs_dly<0>"          LOC = "AK22";    # XP1A_10    /cs_dly0
+NET "ncs_dly<1>"          LOC = "AH21";    # XP1B_10    /cs_dly1
+NET "ncs_dly<2>"          LOC = "AK21";    # XP1C_10    /cs_dly2
+NET "ncs_dly<3>"          LOC = "AG22";    # XP1D_10    /cs_dly3
+NET "ncs_dly<4>"          LOC = "C19";     # XP4D_10    /cs_dly4
+NET "ncs_dly<5>"          LOC = "G19";     # XP4C_10    /cs_dly5
+NET "ncs_dly<6>"          LOC = "F19";     # XP4B_10    /cs_dly6
+
+NET "dout_dly<0>"        LOC = "AD20";    # XP1A_9     dout_dly0
+NET "dout_dly<1>"        LOC = "AE20";    # XP1B_9     dout_dly1
+NET "dout_dly<2>"        LOC = "AJ24";    # XP1C_9     dout_dly2
+NET "dout_dly<3>"        LOC = "AK24";    # XP1D_9     dout_dly3
+NET "dout_dly<4>"        LOC = "A21";     # XP4D_9     dout_dly4
+NET "dout_dly<5>"        LOC = "J19";     # XP4C_9     dout_dly5
+NET "dout_dly<6>"        LOC = "H19";     # XP4B_9     dout_dly6
+
+# Test Pulse
+NET "async_adb"           LOC = "AE30";    # XP2A_15    async_adb
+NET "test_pulse"            LOC = "AJ29";    # XP2B_10    tst_pls
+NET "tp_start_ext"        LOC = "R24";     # XP2D_10    tp_strt_ext
+
+# Sequencer Status
+NET "m_seq_cmd<0>"          LOC = "W25";     # XP2A_14    seq_cmd0
+NET "m_seq_cmd<1>"          LOC = "W24";     # XP2B_14    seq_cmd1
+
+NET "m_seq_status<0>"         LOC = "M26";     # XP2B_24    seq_sts0
+NET "m_seq_status<1>"         LOC = "K30";     # XP2C_24    seq_sts1
+
+NET "sc_done"         LOC = "E28";     # XP2C_30    sl_cl_done
+NET "mc_done"			LOC = "B27";	#I/O_403 Pin XP2.D30 ## FIXME: what is this??
+
+# Reserved
+NET "m_reserved_in<0>"	LOC = "AF28";	#I/O_463 Pin XP2.B13
+NET "m_reserved_in<1>"	LOC = "AF30";	#I/O_464 Pin XP2.A13
+NET "m_reserved_out<0>"	LOC = "W24";	#I/O_459 Pin XP2.B14
+NET "m_reserved_out<1>"	LOC = "W25";	#I/O_460 Pin XP2.A14
+
+# Serial Number
+NET "alct_sn"			LOC = "K26";	#I/O_410 Pin XP2.A29
+NET "mez_sn"			LOC = "A27";	#I/O_406 Pin XP2.A30
+
+# ADC
+NET "adc_eoc"			LOC = "U24";	# ADC_EOC
+NET "adc_ncs"			LOC = "C25";	# ADC_NCS
+NET "adc_sck"			LOC = "H21";	# ADC_SCK
+NET "adc_sdi"			LOC = "D25";	# ADC_SDI
+NET "adc_sdo"			LOC = "M28";	# ADC_SDO
+
+# Dual purpose
+NET "init_b"			LOC = "AJ6";	# INIT_B
+NET "m<0>"				LOC = "AK26";	# M0
+NET "m<1>"				LOC = "AJ22";	# M1
+NET "rdwr_b"			LOC = "AK11";	# RDWR_B
+
+#----------------------------------------------------------------------------------------------------------
+# IOB Modifiers
+#----------------------------------------------------------------------------------------------------------
+NET "clk80<*>"			SLEW=FAST | DRIVE=12;
+
+NET "m_reserved_out<*>"	SLEW=SLOW | DRIVE=12;
+NET "m_ext_inject"		SLEW=SLOW | DRIVE=12;
+NET "m_active_feb"		SLEW=SLOW | DRIVE=12;
+NET "m_valid"			SLEW=SLOW | DRIVE=12;
+NET "m_key<*>"			SLEW=SLOW | DRIVE=12;
+NET "m_quality<*>"		SLEW=SLOW | DRIVE=12;
+NET "m_amu"				SLEW=SLOW | DRIVE=12;
+NET "m_bxn<*>"			SLEW=SLOW | DRIVE=12;
+NET "m_l1_accept"		SLEW=SLOW | DRIVE=12;
+NET "m_daq_data<*>"		SLEW=SLOW | DRIVE=12;
+NET "m_lct_special"		SLEW=SLOW | DRIVE=12;
+NET "m_ddu_special"		SLEW=SLOW | DRIVE=12;
+NET "m_seq_status<*>"	SLEW=SLOW | DRIVE=12;
+
+NET "tp0_<30>"			PULLUP;	#I/O_478 Pin XP2.C04
+NET "tp0_<31>"			PULLUP;	#I/O_477 Pin XP2.D04
+
+#----------------------------------------------------------------------------------------------------------
+# Time Specs
+#----------------------------------------------------------------------------------------------------------
+NET "clock" TNM_NET = "clock";
+TIMESPEC "TS_clock" = PERIOD "clock" 24 ns HIGH 50 %;
+
+#----------------------------------------------------------------------------------------------------------
+# Spartan-6 Clock Section
+#----------------------------------------------------------------------------------------------------------
+# Main DCM
+#!!INST "udcm_sp"					LOC	= "DCM_X0Y6";	# PAR selected this site
+
+# Main PLL
+
+# Buffers
+#NST "uclock_ctrl/ubufio2_main"		LOC	= "BUFIO2_X2Y28";
+#NST "uclock_ctrl/ubufio2fb_main"	LOC	= "BUFIO2FB_X2Y28";
+#NST "uibufg_tck"					LOC	= "BUFGMUX_X3Y16";
+#NET "tck_ctrl" CLOCK_DEDICATED_ROUTE = FALSE;
+
+#----------------------------------------------------------------------------------------------------------
+# Spartan-6 Mezzanne IOs not used by ALCT384
+#----------------------------------------------------------------------------------------------------------
+#ET "gp_io7"			LOC = "AA27";	# /CS
+#ET "gp_io5"			LOC = "AA28";	# /INIT
+#ET "gp_io6"			LOC = "Y26";	# /WRITE
+#ET "led_fp<0>"			LOC = "AA30";	# A0
+#ET "led_fp<1>"			LOC = "AA29";	# A1
+#ET "led_fp<2>"			LOC = "Y30";	# A2
+#ET "led_fp<3>"			LOC = "Y28";	# A3
+#ET "led_fp<4>"			LOC = "U28";	# A4
+#ET "led_fp<5>"			LOC = "U27";	# A5
+#ET "led_fp<6>"			LOC = "U30";	# A6
+#ET "led_fp<7>"			LOC = "U29";	# A7
+#ET "meztp20"			LOC = "T30";	# A8
+#ET "meztp21"			LOC = "T28";	# A9
+#ET "meztp22"			LOC = "T27";	# A10
+#ET "meztp23"			LOC = "T26";	# A11
+#ET "meztp24"			LOC = "R28";	# A12
+#ET "meztp25"			LOC = "R27";	# A13
+#ET "meztp26"			LOC = "R30";	# A14
+#ET "meztp27"			LOC = "R29";	# A15
+#ET "abus<16>"			LOC = "P27";	# A16
+#ET "abus<17>"			LOC = "P26";	# A17
+#ET "abus<18>"			LOC = "P30";	# A18
+#ET "abus<19>"			LOC = "P28";	# A19
+#ET "abus<20>"			LOC = "N28";	# A20
+#ET "abus<21>"			LOC = "N27";	# A21
+#ET "abus<22>"			LOC = "N30";	# A22
+#ET "abus<23>"			LOC = "N29";	# A23
+#ET "abus<24>"			LOC = "F25";	# A24
+#ET "abus<25>"			LOC = "G25";	# A25
+#ET "awake"				LOC = "AA24";	# AWAKE
+#ET "mez_busy"			LOC = "AA25";	# BUSY
+#ET "cclk"				LOC = "AJ26";	# CCLK
+#ET "cmpcs_b"			LOC = "AC25";	# CMPCS_B
+#ET "csi_b"				LOC = "AK25";	# CSI_B
+#ET "cso_b"				LOC = "AK6";	# CSO_B
+#ET "dbus<0>"			LOC = "AH25";	# D0
+#ET "dbus<1>"			LOC = "AH23";	# D1
+#ET "dbus<2>"			LOC = "AK23";	# D2
+#ET "dbus<3>"			LOC = "AJ12";	# D3
+#ET "dbus<4>"			LOC = "AK12";	# D4
+#ET "dbus<5>"			LOC = "AJ8";	# D5
+#ET "dbus<6>"			LOC = "AK8";	# D6
+#ET "dbus<7>"			LOC = "AH11";	# D7
+#ET "hswapen"			LOC = "G9";		# HSWAPEN
+
+#ET "_ccb_tx<7>"		LOC = "AD20";	# I/O_9
+#ET "_ccb_tx<8>"		LOC = "AE20";	# I/O_10
+#ET "_ccb_tx<9>"		LOC = "AJ24";	# I/O_11
+#ET "_ccb_tx<10>"		LOC = "AK24";	# I/O_12
+#ET "_ccb_tx<11>"		LOC = "AK22";	# I/O_13
+#ET "_ccb_tx<12>"		LOC = "AH21";	# I/O_14
+#ET "_ccb_tx<13>"		LOC = "AK21";	# I/O_15
+#ET "_ccb_tx<14>"		LOC = "AG22";	# I/O_16
+#ET "_ccb_tx<15>"		LOC = "AH22";	# I/O_17
+#ET "_ccb_tx<16>"		LOC = "AJ20";	# I/O_18
+#ET "_ccb_tx<17>"		LOC = "AK20";	# I/O_19
+#ET "_ccb_rx<18>"		LOC = "AF21";	# I/O_20
+#ET "_ccb_rx<19>"		LOC = "AG21";	# I/O_21
+#ET "_ccb_rx<20>"		LOC = "AB20";	# I/O_22
+#ET "_ccb_rx<21>"		LOC = "AC20";	# I/O_23
+#ET "_ccb_rx<22>"		LOC = "AD19";	# I/O_24
+#ET "_ccb_rx<23>"		LOC = "AE19";	# I/O_25
+#ET "_ccb_rx<24>"		LOC = "AG20";	# I/O_26
+#ET "_ccb_rx<25>"		LOC = "AH20";	# I/O_27
+#ET "_ccb_rx<26>"		LOC = "AD18";	# I/O_28
+#ET "_ccb_rx<27>"		LOC = "AE18";	# I/O_29
+#ET "_ccb_rx<28>"		LOC = "AA19";	# I/O_30
+#ET "_ccb_rx<29>"		LOC = "AB19";	# I/O_31
+#ET "_ccb_rx<30>"		LOC = "AF19";	# I/O_32
+#ET "_ccb_rx<31>"		LOC = "AG19";	# I/O_33
+#ET "_ccb_rx<32>"		LOC = "AG18";	# I/O_34
+#ET "_ccb_rx<33>"		LOC = "AH18";	# I/O_35
+#ET "_ccb_rx<0>"		LOC = "AB18";	# I/O_36
+#ET "_ccb_rx<1>"		LOC = "AC18";	# I/O_37
+#ET "_ccb_rx<2>"		LOC = "AF17";	# I/O_38
+#ET "_ccb_rx<3>"		LOC = "AG17";	# I/O_39
+#ET "_ccb_rx<4>"		LOC = "AD17";	# I/O_40
+#ET "_ccb_rx<5>"		LOC = "AE17";	# I/O_41
+#ET "_ccb_rx<6>"		LOC = "AD16";	# I/O_42
+#ET "_ccb_rx<7>"		LOC = "AE16";	# I/O_43
+#ET "_ccb_rx<8>"		LOC = "AJ16";	# I/O_44
+#ET "_ccb_rx<9>"		LOC = "AK16";	# I/O_45
+#ET "_ccb_rx<10>"		LOC = "AH17";	# I/O_46
+#ET "_ccb_rx<11>"		LOC = "AK17";	# I/O_47
+#ET "_ccb_rx<12>"		LOC = "AB16";	# I/O_48
+#ET "_ccb_rx<13>"		LOC = "AC16";	# I/O_49
+#ET "_ccb_rx<14>"		LOC = "AF15";	# I/O_50
+#ET "_ccb_rx<15>"		LOC = "AG15";	# I/O_51
+#ET "_ccb_rx<16>"		LOC = "AG16";	# I/O_52
+#ET "_ccb_rx<17>"		LOC = "AH16";	# I/O_53
+#ET "vme_d<0>"			LOC = "AD15";	# I/O_54
+#ET "vme_d<1>"			LOC = "AE15";	# I/O_55
+#ET "vme_d<2>"			LOC = "AA15";	# I/O_56
+#ET "vme_d<3>"			LOC = "AB15";	# I/O_57
+#ET "vme_d<4>"			LOC = "AH15";	# I/O_58
+#ET "vme_d<5>"			LOC = "AK15";	# I/O_59
+#ET "vme_d<6>"			LOC = "AJ14";	# I/O_60
+#ET "vme_d<7>"			LOC = "AK14";	# I/O_61
+#ET "vme_d<8>"			LOC = "AB14";	# I/O_62
+#ET "vme_d<9>"			LOC = "AC14";	# I/O_63
+#ET "vme_d<10>"			LOC = "AH13";	# I/O_64
+#ET "vme_d<11>"			LOC = "AK13";	# I/O_65
+#ET "vme_d<12>"			LOC = "AD14";	# I/O_66
+#ET "vme_d<13>"			LOC = "AE14";	# I/O_67
+#ET "vme_d<14>"			LOC = "AF13";	# I/O_68
+#ET "vme_d<15>"			LOC = "AG13";	# I/O_69
+#ET "vme_am<0>"			LOC = "AG14";	# I/O_70
+#ET "vme_am<1>"			LOC = "AH14";	# I/O_71
+#ET "vme_am<2>"			LOC = "AG12";	# I/O_72
+#ET "vme_am<3>"			LOC = "AH12";	# I/O_73
+#ET "vme_am<4>"			LOC = "AD13";	# I/O_74
+#ET "vme_am<5>"			LOC = "AE13";	# I/O_75
+#ET "vme_a<1>"			LOC = "AD12";	# I/O_76
+#ET "vme_a<2>"			LOC = "AE12";	# I/O_77
+#ET "vme_a<3>"			LOC = "AB12";	# I/O_78
+#ET "vme_a<4>"			LOC = "AC12";	# I/O_79
+#ET "vme_a<5>"			LOC = "AF11";	# I/O_80
+
+#ET "cfeb2_rx<18>"		LOC = "Y3";		# I/O_179
+#ET "cfeb2_rx<17>"		LOC = "Y2";		# I/O_180
+
+#ET "cfeb2_rx<14>"		LOC = "AA4";	# I/O_183
+#ET "cfeb2_rx<13>"		LOC = "W3";		# I/O_184
+
+#ET "mpc_clock"			LOC = "C15";	# I/O_188	GCLK18 N Bank 0 TL
+
+#ET "vstat<3>"			LOC = "AB1";	# I/O_194
+
+#ET "tmb_clock0d"		LOC = "AK18";	# I/O_197	GCLK29 P Bank 2 BL
+#ET "cfeb2_rx<7>"		LOC = "V2";		# I/O_198
+
+#ET "cfeb2_rx<4>"		LOC = "U4";		# I/O_201
+#ET "cfeb2_rx<3>"		LOC = "U3";		# I/O_202
+
+#ET "step<2>"			LOC = "A8";		# I/O_299
+#ET "step<1>"			LOC = "D9";		# I/O_300
+#ET "step<0>"			LOC = "C9";		# I/O_301
+#ET "ddd_serial_out"	LOC = "K12";	# I/O_302
+#ET "ddd_adr_latch"		LOC = "J12";	# I/O_303
+#ET "ddd_clock"			LOC = "G11";	# I/O_304
+#ET "ddd_serial_in"		LOC = "F11";	# I/O_305
+#ET "rpc_loop"			LOC = "B9";		# I/O_306
+#ET "_dmb_oe"			LOC = "A9";		# I/O_307
+#ET "dmb_loop"			LOC = "C10";	# I/O_308
+#ET "gtl_loop"			LOC = "A10";	# I/O_309
+#ET "ccb_status_oe"		LOC = "D11";	# I/O_310
+#ET "_gtl_oe"			LOC = "C11";	# I/O_311
+#ET "alct_rx<28>"		LOC = "G12";	# I/O_312
+#ET "alct_rx<27>"		LOC = "F12";	# I/O_313
+#ET "alct_rx<26>"		LOC = "E12";	# I/O_314
+#ET "alct_rx<25>"		LOC = "D12";	# I/O_315
+#ET "alct_rx<24>"		LOC = "B11";	# I/O_316
+#ET "alct_rx<23>"		LOC = "A11";	# I/O_317
+#ET "alct_rx<22>"		LOC = "C12";	# I/O_318
+#ET "alct_rx<21>"		LOC = "A12";	# I/O_319
+#ET "alct_rx<20>"		LOC = "D13";	# I/O_320
+#ET "alct_rx<19>"		LOC = "C13";	# I/O_321
+#ET "alct_rx<18>"		LOC = "J13";	# I/O_322
+#ET "alct_rx<17>"		LOC = "H13";	# I/O_323
+#ET "alct_rx<16>"		LOC = "G13";	# I/O_324
+#ET "alct_rx<15>"		LOC = "F13";	# I/O_325
+#ET "alct_rx<14>"		LOC = "K14";	# I/O_326
+#ET "alct_rx<13>"		LOC = "J14";	# I/O_327
+#ET "alct_rx<12>"		LOC = "G14";	# I/O_328
+#ET "alct_rx<11>"		LOC = "F14";	# I/O_329
+#ET "alct_rx<10>"		LOC = "E14";	# I/O_330
+#ET "alct_rx<9>"		LOC = "D14";	# I/O_331
+#ET "alct_rx<8>"		LOC = "B13";	# I/O_332
+#ET "alct_rx<7>"		LOC = "A13";	# I/O_333
+#ET "alct_rx<6>"		LOC = "C14";	# I/O_334
+#ET "alct_rx<5>"		LOC = "A14";	# I/O_335
+#ET "alct_rx<4>"		LOC = "J15";	# I/O_336
+#ET "alct_rx<3>"		LOC = "H15";	# I/O_337
+#ET "alct_rx<2>"		LOC = "G15";	# I/O_338
+#ET "alct_rx<1>"		LOC = "F15";	# I/O_339
+#ET "rpc_tx<3>"			LOC = "A16";	# I/O_340
+#ET "alct_rxoe"			LOC = "C18";	# I/O_341
+#ET "alct_loop"			LOC = "A18";	# I/O_342
+#ET "alct_txb<23>"		LOC = "B17";	# I/O_343
+#ET "alct_txb<22>"		LOC = "A17";	# I/O_344
+#ET "alct_txb<21>"		LOC = "E16";	# I/O_345
+#ET "alct_txb<20>"		LOC = "D16";	# I/O_346
+#ET "alct_txoe"			LOC = "G16";	# I/O_347
+#ET "alct_clock_en"		LOC = "F16";	# I/O_348
+#ET "alct_txb<19>"		LOC = "D17";	# I/O_349
+#ET "alct_txa<16>"		LOC = "C17";	# I/O_350
+#ET "alct_txa<15>"		LOC = "G17";	# I/O_351
+#ET "alct_txa<14>"		LOC = "F17";	# I/O_352
+#ET "alct_txa<13>"		LOC = "J17";	# I/O_353
+#ET "alct_txa<12>"		LOC = "H17";	# I/O_354
+#ET "alct_txa<11>"		LOC = "B19";	# I/O_355
+#ET "alct_txa<10>"		LOC = "A19";	# I/O_356
+#ET "alct_txa<9>"		LOC = "E18";	# I/O_357
+#ET "alct_txa<8>"		LOC = "D18";	# I/O_358
+#ET "alct_txa<7>"		LOC = "G18";	# I/O_359
+#ET "alct_txa<6>"		LOC = "F18";	# I/O_360
+#ET "alct_txa<5>"		LOC = "C20";	# I/O_361
+#ET "rpc_rx<36>"		LOC = "D19";	# I/O_362
+#ET "rpc_rx<37>"		LOC = "C19";	# I/O_363
+#ET "rpc_rx<32>"		LOC = "G19";	# I/O_364
+#ET "rpc_rx<33>"		LOC = "F19";	# I/O_365
+#ET "rpc_rx<34>"		LOC = "B21";	# I/O_366
+#ET "rpc_rx<35>"		LOC = "A21";	# I/O_367
+#ET "rpc_rx<0>"			LOC = "J19";	# I/O_368
+#ET "rpc_rx<1>"			LOC = "H19";	# I/O_369
+#ET "rpc_rx<2>"			LOC = "E20";	# I/O_370
+
+#ET "_mpc_tx<28>"		LOC = "E29";	# I/O_405
+
+#ET "_mpc_tx<16>"		LOC = "F26";	# I/O_501
+#ET "_mpc_tx<17>"		LOC = "F27";	# I/O_502
+#ET "_mpc_tx<18>"		LOC = "E26";	# I/O_503
+#ET "_mpc_tx<19>"		LOC = "D26";	# I/O_504
+#ET "_mpc_tx<20>"		LOC = "C29";	# I/O_505
+#ET "_mpc_tx<21>"		LOC = "C30";	# I/O_506
+#ET "_mpc_tx<22>"		LOC = "D27";	# I/O_507
+#ET "_mpc_tx<23>"		LOC = "C27";	# I/O_508
+#ET "_mpc_tx<24>"		LOC = "D28";	# I/O_509
+#ET "_mpc_tx<25>"		LOC = "D30";	# I/O_510
+#ET "_mpc_tx<26>"		LOC = "E27";	# I/O_511
+#ET "dmb_tx<3>"			LOC = "T24";	# I/O_512
+#ET "dmb_tx<2>"			LOC = "T25";	# I/O_513
+#ET "dmb_tx<1>"			LOC = "AJ28";	# I/O_514
+#ET "dmb_tx<0>"			LOC = "AK28";	# I/O_515
+#ET "_ccb_rx<36>"		LOC = "U25";	# I/O_516
+
+#ET "unused<0>"			LOC = "F9";		# UNUSED0
+#ET "unused<1>"			LOC = "C16";	# UNUSED1
+#ET "unused<2>"			LOC = "A20";	# UNUSED2
+#ET "unused<3>"			LOC = "L29";	# UNUSED3
+#----------------------------------------------------------------------------------------------------------
+# end
+#----------------------------------------------------------------------------------------------------------

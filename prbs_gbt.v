@@ -2,8 +2,11 @@
 
 module prbs_gbt (
 
-  input [1:0] gbt_clk40_p, // 40 mhz e-link frame clock (from GBTx)
-  input [1:0] gbt_clk40_n, // 40 mhz e-link frame clock (from GBTx)
+  input gbt_clk40_p, // 40 mhz e-link frame clock (from GBTx)
+  input gbt_clk40_n, // 40 mhz e-link frame clock (from GBTx)
+   
+  input gbt_clk320_p, // 320 mhz e-link frame clock (from GBTx)
+  input gbt_clk320_n, // 320 mhz e-link frame clock (from GBTx)
 
   output [13:0] elink_p, // 14 e-link outputs
   output [13:0] elink_n, // 14 e-link outputs
@@ -88,6 +91,9 @@ optical (
 
   .gbt_clk40_p (gbt_clk40_p),
   .gbt_clk40_n (gbt_clk40_n),
+  
+  .gbt_clk320_p (gbt_clk320_p),
+  .gbt_clk320_n (gbt_clk320_n),
 
   .data_i ( data_tx [111:0]), // 112 bit data input
 
@@ -143,19 +149,19 @@ prbs_expect (
 
 parameter [13:0] elink_is_valid = { // assign ELINKs to BUFIO2 clocks based on half-banks (consult schematics)
   1'b1, // 13
-  1'b0, // 12
-  1'b0, // 11
-  1'b0, // 10
-  1'b0, // 9
+  1'b1, // 12
+  1'b1, // 11
+  1'b1, // 10
+  1'b1, // 9
   1'b1, // 8
-  1'b0, // 7
-  1'b0, // 6
-  1'b0, // 5
-  1'b0, // 4
-  1'b0, // 3
+  1'b1, // 7
+  1'b1, // 6
+  1'b1, // 5
+  1'b1, // 4
+  1'b1, // 3
   1'b1, // 2
-  1'b0, // 1
-  1'b0  // 0
+  1'b1, // 1
+  1'b1  // 0
 };
 
 

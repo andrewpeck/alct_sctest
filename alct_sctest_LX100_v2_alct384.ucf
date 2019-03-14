@@ -347,39 +347,39 @@ NET "tp1_<28>"           LOC = "A25"  | IOSTANDARD = LVCMOS33; # XP2A_37    tp1_
 NET "tp1_<29>"           LOC = "B23"  | IOSTANDARD = LVCMOS33; # XP2B_37    tp1_29
 NET "tp1_<30>"           LOC = "E19"  | IOSTANDARD = LVCMOS33; # XP2C_37    tp1_30
 NET "tp1_<31>"           LOC = "D21"  | IOSTANDARD = LVCMOS33; # XP2D_37    tp1_31
-NET "elink_n<0>"         LOC = "AA19" | IOSTANDARD = LVDS_33;  # mez_signal elink0_n
-NET "elink_n<1>"         LOC = "AF18" | IOSTANDARD = LVDS_33;  # mez_signal elink1_n
-NET "elink_n<2>"         LOC = "AD17" | IOSTANDARD = LVDS_33;  # mez_signal elink2_n
-NET "elink_n<3>"         LOC = "AF15" | IOSTANDARD = LVDS_33;  # mez_signal elink3_n
-NET "elink_n<4>"         LOC = "AD19" | IOSTANDARD = LVDS_33;  # mez_signal elink4_n
-NET "elink_n<5>"         LOC = "AF19" | IOSTANDARD = LVDS_33;  # mez_signal elink5_n
-NET "elink_n<6>"         LOC = "W16"  | IOSTANDARD = LVDS_33;  # mez_signal elink6_n
-NET "elink_n<7>"         LOC = "AA17" | IOSTANDARD = LVDS_33;  # mez_signal elink7_n
-NET "elink_n<8>"         LOC = "AD15" | IOSTANDARD = LVDS_33;  # mez_signal elink8_n
-NET "elink_n<9>"         LOC = "AF21" | IOSTANDARD = LVDS_33;  # mez_signal elink9_n
-NET "elink_n<10>"        LOC = "AB18" | IOSTANDARD = LVDS_33;  # mez_signal elink10_n
-NET "elink_n<11>"        LOC = "W17"  | IOSTANDARD = LVDS_33;  # mez_signal elink11_n
-NET "elink_n<12>"        LOC = "AD21" | IOSTANDARD = LVDS_33;  # mez_signal elink12_n
-NET "elink_n<13>"        LOC = "AC17" | IOSTANDARD = LVDS_33;  # mez_signal elink13_n
-NET "elink_p<0>"         LOC = "Y18"  | IOSTANDARD = LVDS_33;  # mez_signal elink0_p
-NET "elink_p<1>"         LOC = "AD18" | IOSTANDARD = LVDS_33;  # mez_signal elink1_p
-NET "elink_p<2>"         LOC = "AC16" | IOSTANDARD = LVDS_33;  # mez_signal elink2_p
-NET "elink_p<3>"         LOC = "AE15" | IOSTANDARD = LVDS_33;  # mez_signal elink3_p
-NET "elink_p<4>"         LOC = "AC19" | IOSTANDARD = LVDS_33;  # mez_signal elink4_p
-NET "elink_p<5>"         LOC = "AE19" | IOSTANDARD = LVDS_33;  # mez_signal elink5_p
-NET "elink_p<6>"         LOC = "V15"  | IOSTANDARD = LVDS_33;  # mez_signal elink6_p
-NET "elink_p<7>"         LOC = "Y16"  | IOSTANDARD = LVDS_33;  # mez_signal elink7_p
-NET "elink_p<8>"         LOC = "AC15" | IOSTANDARD = LVDS_33;  # mez_signal elink8_p
-NET "elink_p<9>"         LOC = "AE21" | IOSTANDARD = LVDS_33;  # mez_signal elink9_p
-NET "elink_p<10>"        LOC = "AA18" | IOSTANDARD = LVDS_33;  # mez_signal elink10_p
-NET "elink_p<11>"        LOC = "V16"  | IOSTANDARD = LVDS_33;  # mez_signal elink11_p
-NET "elink_p<12>"        LOC = "AC20" | IOSTANDARD = LVDS_33;  # mez_signal elink12_p
-NET "elink_p<13>"        LOC = "AB17" | IOSTANDARD = LVDS_33;  # mez_signal elink13_p
+NET "elink_n<0>"         LOC = "AA19" | IOSTANDARD = PPDS_33;  # mez_signal elink0_n
+NET "elink_n<1>"         LOC = "AF18" | IOSTANDARD = PPDS_33;  # mez_signal elink1_n
+NET "elink_n<2>"         LOC = "AD17" | IOSTANDARD = PPDS_33;  # mez_signal elink2_n
+NET "elink_n<3>"         LOC = "AF15" | IOSTANDARD = PPDS_33;  # mez_signal elink3_n
+NET "elink_n<4>"         LOC = "AD19" | IOSTANDARD = PPDS_33;  # mez_signal elink4_n
+NET "elink_n<5>"         LOC = "AF19" | IOSTANDARD = PPDS_33;  # mez_signal elink5_n
+NET "elink_n<6>"         LOC = "W16"  | IOSTANDARD = PPDS_33;  # mez_signal elink6_n
+NET "elink_n<7>"         LOC = "AA17" | IOSTANDARD = PPDS_33;  # mez_signal elink7_n
+NET "elink_n<8>"         LOC = "AD15" | IOSTANDARD = PPDS_33;  # mez_signal elink8_n
+NET "elink_n<9>"         LOC = "AF21" | IOSTANDARD = PPDS_33;  # mez_signal elink9_n
+NET "elink_n<10>"        LOC = "AB18" | IOSTANDARD = PPDS_33;  # mez_signal elink10_n
+NET "elink_n<11>"        LOC = "W17"  | IOSTANDARD = PPDS_33;  # mez_signal elink11_n
+NET "elink_n<12>"        LOC = "AD21" | IOSTANDARD = PPDS_33;  # mez_signal elink12_n
+NET "elink_n<13>"        LOC = "AC17" | IOSTANDARD = PPDS_33;  # mez_signal elink13_n
+NET "elink_p<0>"         LOC = "Y18"  | IOSTANDARD = PPDS_33;  # mez_signal elink0_p
+NET "elink_p<1>"         LOC = "AD18" | IOSTANDARD = PPDS_33;  # mez_signal elink1_p
+NET "elink_p<2>"         LOC = "AC16" | IOSTANDARD = PPDS_33;  # mez_signal elink2_p
+NET "elink_p<3>"         LOC = "AE15" | IOSTANDARD = PPDS_33;  # mez_signal elink3_p
+NET "elink_p<4>"         LOC = "AC19" | IOSTANDARD = PPDS_33;  # mez_signal elink4_p
+NET "elink_p<5>"         LOC = "AE19" | IOSTANDARD = PPDS_33;  # mez_signal elink5_p
+NET "elink_p<6>"         LOC = "V15"  | IOSTANDARD = PPDS_33;  # mez_signal elink6_p
+NET "elink_p<7>"         LOC = "Y16"  | IOSTANDARD = PPDS_33;  # mez_signal elink7_p
+NET "elink_p<8>"         LOC = "AC15" | IOSTANDARD = PPDS_33;  # mez_signal elink8_p
+NET "elink_p<9>"         LOC = "AE21" | IOSTANDARD = PPDS_33;  # mez_signal elink9_p
+NET "elink_p<10>"        LOC = "AA18" | IOSTANDARD = PPDS_33;  # mez_signal elink10_p
+NET "elink_p<11>"        LOC = "V16"  | IOSTANDARD = PPDS_33;  # mez_signal elink11_p
+NET "elink_p<12>"        LOC = "AC20" | IOSTANDARD = PPDS_33;  # mez_signal elink12_p
+NET "elink_p<13>"        LOC = "AB17" | IOSTANDARD = PPDS_33;  # mez_signal elink13_p
 
-NET "gbt_clk40_p<1>"     LOC = "AD14" | IOSTANDARD = LVDS_33 | DIFF_TERM = TRUE;  #
-NET "gbt_clk40_n<1>"     LOC = "AF14" | IOSTANDARD = LVDS_33 | DIFF_TERM = TRUE;  #
-NET "gbt_clk40_p<0>"     LOC = "AE13" | IOSTANDARD = LVDS_33 | DIFF_TERM = TRUE;  #
-NET "gbt_clk40_n<0>"     LOC = "AF13" | IOSTANDARD = LVDS_33 | DIFF_TERM = TRUE;  #
+NET "gbt_clk320_p"     LOC = "AD14" | IOSTANDARD = PPDS_33 | DIFF_TERM = TRUE;  #
+NET "gbt_clk320_n"     LOC = "AF14" | IOSTANDARD = PPDS_33 | DIFF_TERM = TRUE;  #
+NET "gbt_clk40_p"     LOC = "AE13" | IOSTANDARD = PPDS_33 | DIFF_TERM = TRUE;  #
+NET "gbt_clk40_n"     LOC = "AF13" | IOSTANDARD = PPDS_33 | DIFF_TERM = TRUE;  #
 
 NET "gbt_tx_datavalid"   LOC = "M24"  | IOSTANDARD = LVCMOS33;  #
 
@@ -389,7 +389,6 @@ NET "m<0>"               LOC = "AF22" | IOSTANDARD = LVCMOS33;  #
 NET "m<1>"               LOC = "AD16" | IOSTANDARD = LVCMOS33;  #
 NET "init_b"             LOC = "AE4"  | IOSTANDARD = LVCMOS33;  #
 NET "rdwr_b"             LOC = "AF9"  | IOSTANDARD = LVCMOS33;  #
-
 
 #------------------------------------------------------------------------
 # IOB Modifiers

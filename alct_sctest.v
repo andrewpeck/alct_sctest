@@ -220,6 +220,8 @@
 
    , gbt_clk40_p
    , gbt_clk40_n
+   , gbt_clk320_p
+   , gbt_clk320_n
 
    , gbt_txrdy
    , gbt_tx_datavalid
@@ -372,8 +374,11 @@
    output [13:0] elink_p;
    output [13:0] elink_n;
 
-   input [1:0] gbt_clk40_p;
-   input [1:0] gbt_clk40_n;
+   input gbt_clk40_p;
+   input gbt_clk40_n;
+
+   input gbt_clk320_p;
+   input gbt_clk320_n;
 
    input gbt_txrdy;
    output gbt_tx_datavalid;
@@ -1879,6 +1884,7 @@
 
     assign gbt_tx_datavalid = 1'b1;
 
+
     prbs_gbt  prbs_gbt (
 
       .elink_p(elink_p),
@@ -1886,6 +1892,9 @@
 
       .gbt_clk40_p(gbt_clk40_p),
       .gbt_clk40_n(gbt_clk40_n),
+
+      .gbt_clk320_p(gbt_clk320_p),
+      .gbt_clk320_n(gbt_clk320_n),
 
       .gbt_txrdy (gbt_txrdy),
 
