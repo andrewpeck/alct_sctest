@@ -453,26 +453,26 @@
 
     BUFG  ubufg_clock_1x     (.I(clock_1x_pll    ), .O(clock          ));
     BUFG  ubufg_clock_2x     (.I(clock_2x_pll    ), .O(clock_2x       ));
-    BUFG  ubufg_clock_1x_90  (.I(clock_1x_90_pll ), .O(clock_1x_90    ));
-    BUFG  ubufg_clock_1x_270 (.I(clock_1x_270_pll), .O(clock_1x_270   ));
-    BUFG  ubufg_clock_2x_90  (.I(clock_2x_90_pll ), .O(clock_2x_90    ));
-    BUFG  ubufg_clock_2x_270 (.I(clock_2x_270_pll), .O(clock_2x_270   ));
+    BUFG  ubufg_clock_1x_base  (.I(clock_1x_base_pll ), .O(clock_1x_base    ));
+    //BUFG  ubufg_clock_1x_270 (.I(clock_1x_270_pll), .O(clock_1x_270   ));
+    BUFG  ubufg_clock_2x_base  (.I(clock_2x_base_pll ), .O(clock_2x_base    ));
+    //BUFG  ubufg_clock_2x_270 (.I(clock_2x_270_pll), .O(clock_2x_270   ));
 
 // Receive multiplexer enable, 0=en, pullup onboard
     assign nmx_oe = 0;
 
 // Receive multiplexer clocks 80MHz ddr obuf fast 24ma
 `ifdef ALCT288
-    clock_mirror uclk40_0 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[0]));
-    clock_mirror uclk80_0 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[0]  ));
+    clock_mirror uclk40_0 (.clock(clock_1x_base),.clock_180(~clock_1x_base), .mirror(clk40sh[0]));
+    clock_mirror uclk80_0 (.clock(clock_2x_base),.clock_180(~clock_2x_base), .mirror(clk80[0]));
 `elsif ALCT384
-    clock_mirror uclk40_0 (.clock(clock_1x_90),.clock_180(clock_1x_270), .mirror(clk40sh[0]));
-    clock_mirror uclk80_0 (.clock(clock_2x_90),.clock_180(clock_2x_270), .mirror(clk80[0]  ));
+    clock_mirror uclk40_0 (.clock(clock_1x_base),.clock_180(~clock_1x_base), .mirror(clk40sh[0]));
+    clock_mirror uclk80_0 (.clock(clock_2x_base),.clock_180(~clock_2x_base), .mirror(clk80[0]));
 `elsif ALCT672
-    clock_mirror uclk40_0 (.clock(clock_1x_90), .clock_180(~clock_1x_90), .mirror(clk40sh[0]));
-    clock_mirror uclk40_1 (.clock(clock_1x_90), .clock_180(~clock_1x_90), .mirror(clk40sh[1]));
-    clock_mirror uclk80_0 (.clock(clock_2x),    .clock_180(~clock_2x),    .mirror(clk80[0]  ));
-    clock_mirror uclk80_1 (.clock(clock_2x),    .clock_180(~clock_2x),    .mirror(clk80[1]  ));
+    clock_mirror uclk40_0 (.clock(clock_1x_base), .clock_180(~clock_1x_base), .mirror(clk40sh[0]));
+    clock_mirror uclk40_1 (.clock(clock_1x_base), .clock_180(~clock_1x_base), .mirror(clk40sh[1]));
+    clock_mirror uclk80_0 (.clock(clock_2x_base), .clock_180(~clock_2x_base), .mirror(clk80[0]  ));
+    clock_mirror uclk80_1 (.clock(clock_2x_base), .clock_180(~clock_2x_base), .mirror(clk80[1]  ));
 `endif
 
 // PLL generates clocks 1x=40MHz, 2x=80MHz and phase offsets for LCT multiplexers
@@ -497,41 +497,52 @@
     .CLKOUT5_DIVIDE         (6),                    // 80 MHz
 
     .CLKOUT0_DUTY_CYCLE     (0.5),                  //Duty cycle for CLKOUT# clock output (0.01-0.99)
-    .CLKOUT1_DUTY_CYCLE     (0.5),
+    .CLKOUT1_DUTY_CYCLE     (0.5), // baseboard 40MHz
     .CLKOUT2_DUTY_CYCLE     (0.5),
     .CLKOUT3_DUTY_CYCLE     (0.5),
-    .CLKOUT4_DUTY_CYCLE     (0.5),
+    .CLKOUT4_DUTY_CYCLE     (0.3), // baseboard 80MHz
     .CLKOUT5_DUTY_CYCLE     (0.5),
 
     .CLKOUT0_PHASE          (  0.0),                // Output phase relationship for CLKOUT# clock output (-360.0-360.0)
+
     `ifdef ALCT288
     .CLKOUT1_PHASE          ( 90.0),
     `elsif ALCT384
     .CLKOUT1_PHASE          (135.0),
     `elsif ALCT672
-    .CLKOUT1_PHASE          ( 45.0),
+    .CLKOUT1_PHASE          (45.0),
     `else
     .CLKOUT1_PHASE          (99999),
     `endif
+
     .CLKOUT2_PHASE          (270.0),
     .CLKOUT3_PHASE          (  0.0),
-    .CLKOUT4_PHASE          ( 90.0),
+
+    `ifdef ALCT288
+    .CLKOUT4_PHASE          (135.0),
+    `elsif ALCT384
+    .CLKOUT4_PHASE          (135.0),
+    `elsif ALCT672
+    .CLKOUT4_PHASE          (0.0),
+    `else
+    `endif
+
     .CLKOUT5_PHASE          (270.0)
 
     ) upll_base (
 
-    .CLKIN                  (clock_mez_ibufg),      // 1-bit input:  Clock input
-    .CLKFBIN                (clock_fbin),           // 1-bit input:  Feedback clock input
-    .CLKFBOUT               (clock_fbout),          // 1-bit output: PLL_BASE feedback output
-    .RST                    (1'b0),                 // 1-bit input:  Reset input
-    .LOCKED                 (clock_lock),           // 1-bit output: PLL_BASE lock status output
+    .CLKIN                  (clock_mez_ibufg), // 1-bit input:  Clock input
+    .CLKFBIN                (clock_fbin),      // 1-bit input:  Feedback clock input
+    .CLKFBOUT               (clock_fbout),     // 1-bit output: PLL_BASE feedback output
+    .RST                    (1'b0),            // 1-bit input:  Reset input
+    .LOCKED                 (clock_lock),      // 1-bit output: PLL_BASE lock status output
 
-    .CLKOUT0                (clock_1x_pll    ),     // 40 MHz
-    .CLKOUT1                (clock_1x_90_pll ),     // 40 MHz 90  degrees for base board mux select
-    .CLKOUT2                (clock_1x_270_pll),     // 40 MHz 270 degrees for clock mirrors
-    .CLKOUT3                (clock_2x_pll    ),     // 80 MHz
-    .CLKOUT4                (clock_2x_90_pll ),     // 80 MHz 90  degrees for base board mux select
-    .CLKOUT5                (clock_2x_270_pll)      // 80 MHz 270 degrees for clock mirrors
+    .CLKOUT0                (clock_1x_pll    ),   // 40 MHz
+    .CLKOUT1                (clock_1x_base_pll ), // 40 MHz for base board mux select
+    .CLKOUT2                (),                   // 40 MHz
+    .CLKOUT3                (clock_2x_pll    ),   // 80 MHz
+    .CLKOUT4                (clock_2x_base_pll ), // 80 MHz for base board mux select
+    .CLKOUT5                ()                    // 80 MHz 270 degrees for clock mirrors
     );
 
 `endif
@@ -1585,14 +1596,14 @@
     assign ncs_dly [0] = !(dly_clk_en && dly_sel_reg==3'd0);
     assign ncs_dly [1] = !(dly_clk_en && dly_sel_reg==3'd1);
     assign ncs_dly [2] = !(dly_clk_en && dly_sel_reg==3'd2);
-	 `ifndef ALCT288
+     `ifndef ALCT288
     assign ncs_dly [3] = !(dly_clk_en && dly_sel_reg==3'd3);
-		`ifdef ALCT672 
-		assign ncs_dly [4] = !(dly_clk_en && dly_sel_reg==3'd4);
-		assign ncs_dly [5] = !(dly_clk_en && dly_sel_reg==3'd5);
-		assign ncs_dly [6] = !(dly_clk_en && dly_sel_reg==3'd6);
-		`endif
-	 `endif
+        `ifdef ALCT672
+        assign ncs_dly [4] = !(dly_clk_en && dly_sel_reg==3'd4);
+        assign ncs_dly [5] = !(dly_clk_en && dly_sel_reg==3'd5);
+        assign ncs_dly [6] = !(dly_clk_en && dly_sel_reg==3'd6);
+        `endif
+     `endif
 
     assign clk_dly  = (dly_clk_en) ? !tck : 1'b0;
 
@@ -1878,7 +1889,7 @@
       .reset_i(!clock_lock)
 
     );
-	 
+
   `endif
   `ifdef LX100
 
