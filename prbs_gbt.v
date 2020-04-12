@@ -4,7 +4,7 @@ module prbs_gbt (
 
   input gbt_clk40_p, // 40 mhz e-link frame clock (from GBTx)
   input gbt_clk40_n, // 40 mhz e-link frame clock (from GBTx)
-   
+
   input gbt_clk320_p, // 320 mhz e-link frame clock (from GBTx)
   input gbt_clk320_n, // 320 mhz e-link frame clock (from GBTx)
 
@@ -57,7 +57,7 @@ always @(posedge clock) begin
   else                                 pat_cnt_expect <= pat_cnt_expect + 1'b1;
 
   if      (reset || !start_pattern_received)  rx_start_frame_counter <= tx_start_frame_counter_max;
-  else if (rx_start_frame_counter>0)           rx_start_frame_counter <= rx_start_frame_counter - 1'b1;
+  else if (rx_start_frame_counter>0)          rx_start_frame_counter <= rx_start_frame_counter - 1'b1;
 
 end
 
@@ -91,7 +91,7 @@ optical (
 
   .gbt_clk40_p (gbt_clk40_p),
   .gbt_clk40_n (gbt_clk40_n),
-  
+
   .gbt_clk320_p (gbt_clk320_p),
   .gbt_clk320_n (gbt_clk320_n),
 
@@ -113,18 +113,29 @@ parameter tx_sequence_counter_max = 'h2638e34;
 
 parameter tx_start_frame_counter_max = 256;
 
+parameter STARTUP_CNT_BITS = 19;
+reg [STARTUP_CNT_BITS-1:0] startup_align_counter=0;
+always @(posedge clock) begin
+  if (reset)
+    startup_align_counter <= {STARTUP_CNT_BITS{1'b1}};
+  else if (startup_align_counter > 0)
+    startup_align_counter <=startup_align_counter - 1'b1;
+end
+
+wire startup_align = (startup_align_counter == 1);
+
 reg [9:0] tx_start_frame_counter=0;
 reg [31:0] tx_sequence_counter=0;
 
-wire tx_sequence_reset = (tx_sequence_counter == tx_sequence_counter_max);
+wire tx_sequence_reset = startup_align || (tx_sequence_counter == tx_sequence_counter_max);
 
 always @(posedge clock) begin
   if      (reset)             tx_sequence_counter <= 0;
   else if (tx_sequence_reset) tx_sequence_counter <= 0;
   else                        tx_sequence_counter <= tx_sequence_counter + 1'b1;
 
-  if      (reset || tx_sequence_reset)  tx_start_frame_counter <= tx_start_frame_counter_max;
-  else if (tx_start_frame_counter>0)    tx_start_frame_counter <= tx_start_frame_counter - 1'b1;
+  if      (reset || tx_sequence_reset) tx_start_frame_counter <= tx_start_frame_counter_max;
+  else if (tx_start_frame_counter>0)   tx_start_frame_counter <= tx_start_frame_counter - 1'b1;
 end
 
 wire tx_prbs_reset  = (reset | (tx_start_frame_counter > 0));

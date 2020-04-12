@@ -6,7 +6,7 @@
 # 05/03/2012 Add dual purpose pins
 #
 #----------------------------------------------------------------------------------------------------------
-NET "*"					IOSTANDARD=LVTTL;
+NET "*"					IOSTANDARD=LVCMOS33;
 #----------------------------------------------------------------------------------------------------------
 # Pin assigments
 #----------------------------------------------------------------------------------------------------------
@@ -19,9 +19,9 @@ NET "clock_en"			LOC = "AE28";   # I/O_458 Pin XP2.C14
 
 # ADB Multiplexer
 NET "clk80<0>"			LOC = "C15";	# I/O_188 Pin XP3.A20
-NET "clk80<1>"			LOC = "W1"; 	# I/O_189 Pin XP3.B20
+#NET "clk80<1>"			LOC = "W1"; 	# I/O_189 Pin XP3.B20
 NET "clk40sh<0>"		LOC = "W5"; 	# I/O_190 Pin XP3.A21
-NET "clk40sh<1>"		LOC = "W4";		# I/O_191 Pin XP3.B21
+#NET "clk40sh<1>"		LOC = "W4";		# I/O_191 Pin XP3.B21
 NET "nmx_oe"			LOC = "AA1";	# I/O_187 Pin XP3.D19
 
 # ADB Signal Inputs 80MHz
@@ -390,7 +390,7 @@ NET "m_seq_status<0>"	LOC = "N24";	#I/O_432 Pin XP2.C23
 NET "m_seq_status<1>"	LOC = "N25";	#I/O_433 Pin XP2.B23
 
 NET "sc_done"			LOC = "E28";	#I/O_404 Pin XP2.C30
-NET "mc_done"			LOC = "B27";	#I/O_403 Pin XP2.D30
+#NET "mc_done"			LOC = "B27";	#I/O_403 Pin XP2.D30
 
 # Reserved
 NET "m_reserved_in<0>"	LOC = "AF28";	#I/O_463 Pin XP2.B13

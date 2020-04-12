@@ -33,7 +33,7 @@ module optical_lx150t (
 
    wire [15:0] vio_out;
 
-   // `define USE_CHIPSCOPE
+   `define USE_CHIPSCOPE
 
    `ifdef USE_CHIPSCOPE
    csp_controller alct_optical_test_controller (
@@ -59,9 +59,9 @@ module optical_lx150t (
    wire [3:0] txdiffctrl_vio     = vio_out[14:11];
    wire [2:0] txpreemphasis_vio  = vio_out[10:8];
 
-   wire reset_cnt                = ~simulation & vio_out[0];
-   wire vio_ctrl_tx              = ~simulation & vio_out[1];
-   wire reset_vio                = ~simulation & vio_out[2];
+   wire reset_cnt                = ~SIMULATION & vio_out[0];
+   wire vio_ctrl_tx              = ~SIMULATION & vio_out[1];
+   wire reset_vio                = ~SIMULATION & vio_out[2];
    `else
    wire inj_err_vio              = 0;
    wire [3:0] txdiffctrl_vio     = 0;
@@ -244,8 +244,8 @@ module optical_lx150t (
    // periodically (every ~1 second) restart the prbs and re-send the start-of-sequence marker
    // -- lets the receiving board "catch" the data without relying oon being active and connected at startup
 
-   // parameter clock_count_max = 'h2638e98;
-   parameter clock_count_max = 'h64;
+   parameter clock_count_max = 5 *'h2638e98;
+   //parameter clock_count_max = 'h64;
 
    (* keep = "true" *) reg restart_tx_sequence=0;
    (* keep = "true" *) reg [1:0] restart_rx_sequence = 2'b00;
